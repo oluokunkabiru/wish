@@ -3,13 +3,13 @@
 @section('content')
 <section class="inner-banner2 clearfix">
     <div class="container clearfix">
-      <h2>Our Team</h2>
+      <h2 class="text-center">Our Team</h2>
     </div>
   </section>
   <section class="breadcumb-wrapper">
     <div class="container clearfix">
       <ul class="breadcumb">
-        <li><a href="index-2.html">Home</a></li>
+        <li><a href="{{ route('index') }}">Home</a></li>
         <li><span>Our Team</span></li>
       </ul>
     </div>
@@ -27,7 +27,7 @@
       <div class="our-team-page">
         <div class="row">
           <div class="col-sm-6 col-md-3 team">
-            <div class="team-images row m0"><img src="images/team/1.png" alt=""></div>
+            <div class="team-images row m0"><img src="{{ asset('assets/images/team/1.png') }}" alt=""></div>
             <ul class="nav social-icons">
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
               <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
@@ -40,7 +40,7 @@
             </div>
           </div>
           <div class="col-sm-6 col-md-3 team">
-            <div class="team-images row m0"><img src="images/team/2.png" alt=""></div>
+            <div class="team-images row m0"><img src="{{ asset('assets/images/team/2.png') }}" alt=""></div>
             <ul class="nav social-icons">
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
               <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
@@ -53,7 +53,7 @@
             </div>
           </div>
           <div class="col-sm-6 col-md-3 team">
-            <div class="team-images row m0"><img src="images/team/3.png" alt=""></div>
+            <div class="team-images row m0"><img src="{{ asset('assets/images/team/3.png') }}" alt=""></div>
             <ul class="nav social-icons">
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
               <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
@@ -66,7 +66,7 @@
             </div>
           </div>
           <div class="col-sm-6 col-md-3 team">
-            <div class="team-images row m0"><img src="images/team/4.png" alt=""></div>
+            <div class="team-images row m0"><img src="{{ asset('assets/images/team/4.png') }}" alt=""></div>
             <ul class="nav social-icons">
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
               <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
@@ -83,7 +83,7 @@
       <div class="our-team-page">
         <div class="row">
           <div class="col-sm-6 col-md-3 team">
-            <div class="team-images row m0"><img src="images/team/1.png" alt=""></div>
+            <div class="team-images row m0"><img src="{{ asset('assets/images/team/1.png"') }} alt=""></div>
             <ul class="nav social-icons">
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
               <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
@@ -96,7 +96,7 @@
             </div>
           </div>
           <div class="col-sm-6 col-md-3 team">
-            <div class="team-images row m0"><img src="images/team/2.png" alt=""></div>
+            <div class="team-images row m0"><img src="{{ asset('assets/images/team/2.png') }}" alt=""></div>
             <ul class="nav social-icons">
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
               <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
@@ -109,7 +109,7 @@
             </div>
           </div>
           <div class="col-sm-6 col-md-3 team">
-            <div class="team-images row m0"><img src="images/team/3.png" alt=""></div>
+            <div class="team-images row m0"><img src="{{ asset('assets/images/team/3.png') }}" alt=""></div>
             <ul class="nav social-icons">
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
               <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
@@ -122,7 +122,7 @@
             </div>
           </div>
           <div class="col-sm-6 col-md-3 team">
-            <div class="team-images row m0"><img src="images/team/4.png" alt=""></div>
+            <div class="team-images row m0"><img src="{{ asset('assets/images/team/4.png') }}" alt=""></div>
             <ul class="nav social-icons">
               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
               <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>

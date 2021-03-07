@@ -4,13 +4,13 @@
 @section('content')
 <section class="inner-banner2 clearfix">
     <div class="container clearfix">
-      <h2>Contact Us</h2>
+      <h2 class="text-center">Contact Us</h2>
     </div>
   </section>
   <section class="breadcumb-wrapper">
     <div class="container clearfix">
       <ul class="breadcumb">
-        <li><a href="index-2.html">Home</a></li>
+        <li><a href="{{ route('index') }}">Home</a></li>
         <li><span>Contact Us</span></li>
       </ul>
     </div>
@@ -68,7 +68,7 @@
       </div>
     </div>
   </section>
-  <section id="map-area">
+  {{-- <section id="map-area">
     <div id="contact-google-map" data-map-lat="-37.812802" data-map-lng="144.956981" data-icon-path="images/map/map-marker.png" data-map-title="Envato HQ" data-map-zoom="12" class="google-map"></div>
-  </section>
+  </section> --}}
 @endsection

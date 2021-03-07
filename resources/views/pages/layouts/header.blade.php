@@ -71,13 +71,13 @@
                     </li>
                     <li class="has-t-submenu"><a href="{{ route('about') }}">about us</a>
                       <ul class="submenu">
-                        <li><a href="team.html">Our Team</a></li>
-                        <li><a href="testimonials.html">Testimonials</a></li>
-                        <li><a href="faq.html">Faq</a></li>
+                        <li><a href="{{ route('team') }}">Our Team</a></li>
+                        <li><a href="{{ route('testimony') }}">Testimonials</a></li>
+                        <li><a href="{{ route('faq') }}">Faq</a></li>
                       </ul>
                     </li>
-                    <li class="has-t-submenu"><a href="solutions.html">solutions</a>
-                      <ul class="submenu">
+                    <li class="has-t-submenu"><a href="{{ route('service') }}">services</a>
+                      {{-- <ul class="submenu">
                         <li><a href="meterial.html">meterial engineering</a></li>
                         <li><a href="agricultural.html">agricultural processing</a></li>
                         <li><a href="mechanical.html">Mechanical engineering</a></li>
@@ -85,29 +85,67 @@
                         <li><a href="power.html">power and energy</a></li>
                         <li><a href="oil.html">Oil and lubricant</a></li>
                         <li><a href="alternate.html">alternate energy</a></li>
-                      </ul>
+                      </ul> --}}
                     </li>
-                    <li class="has-t-submenu"><a href="projects.html">Projects</a>
-                      <ul class="submenu">
+                    <li class="has-t-submenu"><a href="{{ route('projects') }}">Projects</a>
+                      {{-- <ul class="submenu">
                         <li><a href="classic.html">classic</a></li>
                         <li><a href="fullscreen.html">fullscreen</a></li>
                         <li><a href="lightbox.html">lightbox</a></li>
                         <li><a href="projects-details.html">Projects Details</a></li>
-                      </ul>
+                      </ul> --}}
                     </li>
-                    <li class="has-t-submenu"><a href="news.html">News</a>
-                      <ul class="submenu">
+                    <li class="has-t-submenu"><a href="{{ route('news') }}">News</a>
+                      {{-- <ul class="submenu">
                         <li><a href="news-details.html">News Details</a></li>
-                      </ul>
+                      </ul> --}}
                     </li>
-                    <li class="has-t-submenu"><a href="shop.html">Shop</a>
-                      <ul class="submenu">
+                    <li class="has-t-submenu"><a href="{{ route('shop') }}">Shop</a>
+                      {{-- <ul class="submenu">
                         <li><a href="product.html">Product Details</a></li>
                         <li><a href="cart.html">Cart Page</a></li>
                         <li><a href="checkout.html">Checkout Page</a></li>
-                      </ul>
+                      </ul> --}}
                     </li>
-                    <li><a href="contact.html">contact us</a></li>
+                    <li><a href="{{ route('contact') }}">contact us</a></li>
+                    @guest
+                        @if (Route::has('login'))
+                    <li class="has-t-submenu"><a href="{{ route('login') }}">Login</a>
+                        <ul class="submenu">
+                            @endif
+
+                            @if (Route::has('register'))
+                          <li><a href="{{ route('register') }}">Sign Up</a></li>
+
+                        </ul>
+                      </li>
+                      @endif
+                      @else
+                      <li class="has-t-submenu"><a href="{{ route('login') }}">
+                        {{ Auth::user()->name }}
+                    </a>
+                        <ul class="submenu">
+                            <li><a href="{{ route('register') }}">Dashboard</a></li>
+                            <li><a href="{{ route('register') }}">History</a></li>
+                            <li><a href="{{ route('register') }}">Event</a></li>
+
+
+                          <li> <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                             {{ __('Logout') }}
+                         </a>
+
+                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                             @csrf
+                         </form>
+                        </li>
+
+                        </ul>
+                      </li>
+
+                      @endguest
+
                   </ul>
                   <div class="mobile-link"><a href="request-qoute.html" class="submit">requet a quote</a>
                     <div class="widget-t widget-t-search">

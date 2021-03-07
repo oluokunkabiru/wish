@@ -4,13 +4,13 @@
 
 <section class="inner-banner2 clearfix">
     <div class="container clearfix">
-      <h2>Projects</h2>
+      <h2 class="text-center">Projects</h2>
     </div>
   </section>
   <section class="breadcumb-wrapper">
     <div class="container clearfix">
       <ul class="breadcumb">
-        <li><a href="index-2.html">Home</a></li>
+        <li><a href="{{ route('index') }}">Home</a></li>
         <li><span>Projects</span></li>
       </ul>
     </div>
@@ -28,21 +28,21 @@
       <div class="project-post">
         <div class="row">
           <div class="col-sm-4 project-post-info">
-            <div class="project-post-image"><a href="projects-details.html"><img src="images/projects/pro-img4.jpg" alt=""></a><a href="projects-details.html" class="four_arrow_hover_box"><span class="arrows"><span></span></span></a></div>
+            <div class="project-post-image"><a href="{{ route('project_details') }}"><img src="{{ asset('assets/images/projects/pro-img4.jpg') }}" alt=""></a><a href="projects-details.html" class="four_arrow_hover_box"><span class="arrows"><span></span></span></a></div>
             <div class="info-text"><a href="projects-details.html">
                 <h4>Oil Plant Project</h4></a>
               <p>Oil & Lubricant</p>
             </div>
           </div>
           <div class="col-sm-4 project-post-info">
-            <div class="project-post-image"><a href="projects-details.html"><img src="images/projects/pro-img5.jpg" alt=""></a><a href="projects-details.html" class="four_arrow_hover_box"><span class="arrows"><span></span></span></a></div>
+            <div class="project-post-image"><a href="{{ route('project_details') }}"><img src="{{ asset('assets/images/projects/pro-img5.jpg') }}" alt=""></a><a href="projects-details.html" class="four_arrow_hover_box"><span class="arrows"><span></span></span></a></div>
             <div class="info-text"><a href="projects-details.html">
                 <h4>Oil Plant Project</h4></a>
               <p>Oil & Lubricant</p>
             </div>
           </div>
           <div class="col-sm-4 project-post-info">
-            <div class="project-post-image"><a href="projects-details.html"><img src="images/projects/pro-img6.jpg" alt=""></a><a href="projects-details.html" class="four_arrow_hover_box"><span class="arrows"><span></span></span></a></div>
+            <div class="project-post-image"><a href="{{ route('project_details') }}"><img src="{{ asset('assets/images/projects/pro-img6.jpg') }}" alt=""></a><a href="projects-details.html" class="four_arrow_hover_box"><span class="arrows"><span></span></span></a></div>
             <div class="info-text"><a href="projects-details.html">
                 <h4>Oil Plant Project</h4></a>
               <p>Oil & Lubricant</p>

@@ -1,15 +1,15 @@
 @extends('pages.layouts.app')
-@section('content', 'Shop')
+@section('title', 'Shop')
 @section('content')
 <section class="inner-banner2 clearfix">
     <div class="container clearfix">
-      <h2>Shop Page</h2>
+      <h2 class="text-center">Shop Page</h2>
     </div>
   </section>
   <section class="breadcumb-wrapper">
     <div class="container clearfix">
       <ul class="breadcumb">
-        <li><a href="index-2.html"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="{{ route('index') }}"><i class="fa fa-home"></i> Home</a></li>
         <li><span>Shop Page</span></li>
       </ul>
     </div>
@@ -53,21 +53,21 @@
               <div class="popular-post best-seller">
                 <ul>
                   <li class="img-cap-effect">
-                    <div class="img-box"><a href="news-details.html"><img src="images/shop/popular-item1.jpg" alt="Awesome Image"></a></div>
+                    <div class="img-box"><a href="news-details.html"><img src="{{ asset('assets/images/shop/popular-item1.jpg') }}" alt="Awesome Image"></a></div>
                     <div class="content"><a href="#">
                         <h4>INdustrial tools</h4></a>
                       <p>$68.99</p><a href="product.html" class="read-more">More Info</a>
                     </div>
                   </li>
                   <li class="img-cap-effect">
-                    <div class="img-box"><a href="news-details.html"><img src="images/shop/popular-item2.jpg" alt="Awesome Image"></a></div>
+                    <div class="img-box"><a href="news-details.html"><img src="{{ asset('assets/images/shop/popular-item2.jpg') }}" alt="Awesome Image"></a></div>
                     <div class="content"><a href="#">
                         <h4>INdustrial tools</h4></a>
                       <p>$68.99</p><a href="product.html" class="read-more">More Info</a>
                     </div>
                   </li>
                   <li class="img-cap-effect">
-                    <div class="img-box"><a href="news-details.html"><img src="images/shop/popular-item3.jpg" alt="Awesome Image"></a></div>
+                    <div class="img-box"><a href="news-details.html"><img src="{{ asset('assets/images/shop/popular-item3.jpg') }}" alt="Awesome Image"></a></div>
                     <div class="content"><a href="#">
                         <h4>INdustrial tools</h4></a>
                       <p>$68.99</p><a href="product.html" class="read-more">More Info</a>
@@ -109,7 +109,7 @@
           <div class="row shop-item-wrapper">
             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="single-shop-item">
-                <div class="img-box"><img src="images/shop/1.jpg" alt="Awesome Image"></div>
+                <div class="img-box"><img src="{{ asset('assets/images/shop/1.jpg') }}" alt="Awesome Image"></div>
                 <div class="content"><a href="product.html">
                     <h3>Industrial Tools</h3></a>
                   <div class="review-box"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span class="price">$68.99</span><a href="product.html" class="thm-btn">Add To Cart</a>
@@ -118,7 +118,7 @@
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="single-shop-item">
-                <div class="img-box"><img src="images/shop/2.jpg" alt="Awesome Image"></div>
+                <div class="img-box"><img src="{{ asset('assets/images/shop/2.jpg') }}" alt="Awesome Image"></div>
                 <div class="content"><a href="product.html">
                     <h3>Industrial Tools</h3></a>
                   <div class="review-box"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span class="price">$68.99</span><a href="product.html" class="thm-btn">Add To Cart</a>
@@ -127,7 +127,7 @@
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="single-shop-item">
-                <div class="img-box"><img src="images/shop/3.jpg" alt="Awesome Image"></div>
+                <div class="img-box"><img src="{{ asset('assets/images/shop/3.jpg') }}" alt="Awesome Image"></div>
                 <div class="content"><a href="product.html">
                     <h3>Industrial Tools</h3></a>
                   <div class="review-box"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span class="price">$68.99</span><a href="product.html" class="thm-btn">Add To Cart</a>
@@ -136,7 +136,7 @@
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="single-shop-item">
-                <div class="img-box"><img src="images/shop/4.jpg" alt="Awesome Image"></div>
+                <div class="img-box"><img src="{{ asset('assets/images/shop/4.jpg') }}" alt="Awesome Image"></div>
                 <div class="content"><a href="product.html">
                     <h3>Industrial Tools</h3></a>
                   <div class="review-box"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span class="price">$68.99</span><a href="product.html" class="thm-btn">Add To Cart</a>
@@ -145,7 +145,7 @@
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="single-shop-item">
-                <div class="img-box"><img src="images/shop/5.jpg" alt="Awesome Image"></div>
+                <div class="img-box"><img src="{{ asset('assets/images/shop/5.jpg') }}" alt="Awesome Image"></div>
                 <div class="content"><a href="product.html">
                     <h3>Industrial Tools</h3></a>
                   <div class="review-box"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span class="price">$68.99</span><a href="product.html" class="thm-btn">Add To Cart</a>
@@ -154,7 +154,7 @@
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="single-shop-item">
-                <div class="img-box"><img src="images/shop/6.jpg" alt="Awesome Image"></div>
+                <div class="img-box"><img src="{{ asset('assets/images/shop/6.jpg') }}" alt="Awesome Image"></div>
                 <div class="content"><a href="product.html">
                     <h3>Industrial Tools</h3></a>
                   <div class="review-box"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span class="price">$68.99</span><a href="product.html" class="thm-btn">Add To Cart</a>
@@ -168,7 +168,7 @@
           <div class="row shop-item-wrapper">
             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="single-shop-item">
-                <div class="img-box"><img src="images/shop/1.jpg" alt="Awesome Image"></div>
+                <div class="img-box"><img src="{{ asset('assets/images/shop/1.jpg') }}" alt="Awesome Image"></div>
                 <div class="content"><a href="product.html">
                     <h3>Industrial Tools</h3></a>
                   <div class="review-box"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span class="price">$68.99</span><a href="product.html" class="thm-btn">Add To Cart</a>
@@ -177,7 +177,7 @@
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="single-shop-item">
-                <div class="img-box"><img src="images/shop/2.jpg" alt="Awesome Image"></div>
+                <div class="img-box"><img src="{{ asset('assets/images/shop/2.jpg') }}" alt="Awesome Image"></div>
                 <div class="content"><a href="product.html">
                     <h3>Industrial Tools</h3></a>
                   <div class="review-box"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span class="price">$68.99</span><a href="product.html" class="thm-btn">Add To Cart</a>

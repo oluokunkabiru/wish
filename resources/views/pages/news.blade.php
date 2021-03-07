@@ -3,13 +3,13 @@
 @section('content')
 <section class="inner-banner2 clearfix">
     <div class="container clearfix">
-      <h2>News</h2>
+      <h2 class="text-center">News</h2>
     </div>
   </section>
   <section class="breadcumb-wrapper">
     <div class="container clearfix">
       <ul class="breadcumb">
-        <li><a href="index-2.html">Home</a></li>
+        <li><a href="{{ route('index') }}">Home</a></li>
         <li><span>News</span></li>
       </ul>
     </div>
@@ -53,21 +53,21 @@
               <div class="popular-post">
                 <ul>
                   <li class="img-cap-effect">
-                    <div class="img-box"><a href="news-details.html"><img src="images/news/popular-post1.jpg" alt="Awesome Image"></a></div>
+                    <div class="img-box"><a href="news-details.html"><img src="{{ asset('assets/images/news/popular-post1.jpg') }}" alt="Awesome Image"></a></div>
                     <div class="content"><a href="#">
                         <h4>Duisau irure dolor</h4></a>
                       <p>in reprehenderit in volup tate velit esse cillum</p><span>02 Dec</span>
                     </div>
                   </li>
                   <li class="img-cap-effect">
-                    <div class="img-box"><a href="news-details.html"><img src="images/news/popular-post2.jpg" alt="Awesome Image"></a></div>
+                    <div class="img-box"><a href="news-details.html"><img src="{{ asset('assets/images/news/popular-post2.jpg') }}" alt="Awesome Image"></a></div>
                     <div class="content"><a href="#">
                         <h4>Duisau irure dolor</h4></a>
                       <p>in reprehenderit in volup tate velit esse cillum</p><span>02 Dec</span>
                     </div>
                   </li>
                   <li class="img-cap-effect">
-                    <div class="img-box"><a href="news-details.html"><img src="images/news/popular-post3.jpg" alt="Awesome Image"></a></div>
+                    <div class="img-box"><a href="news-details.html"><img src="{{ asset('assets/images/news/popular-post3.jpg') }}" alt="Awesome Image"></a></div>
                     <div class="content"><a href="#">
                         <h4>Duisau irure dolor</h4></a>
                       <p>in reprehenderit in volup tate velit esse cillum</p><span>02 Dec</span>
@@ -106,7 +106,7 @@
           <div class="single-post-wrapper">
             <!-- News 1-->
             <article class="single-blog-post img-cap-effect">
-              <div class="img-box"><a href="news-details.html" class="image_hover"><img src="images/news/1.jpg" alt="" class="img-responsive zoom_img_effect"></a></div>
+              <div class="img-box"><a href="news-details.html" class="image_hover"><img src="{{ asset('assets/images/news/1.jpg') }}" alt="" class="img-responsive zoom_img_effect"></a></div>
               <div class="meta-info">
                 <div class="content-box">
                   <ul class="post-links">
@@ -122,7 +122,7 @@
             </article>
             <!-- News 2-->
             <article class="single-blog-post img-cap-effect">
-              <div class="img-box"><a href="news-details.html" class="image_hover"><img src="images/news/2.jpg" alt="" class="img-responsive zoom_img_effect"></a></div>
+              <div class="img-box"><a href="news-details.html" class="image_hover"><img src="{{ asset('assets/images/news/2.jpg') }}" alt="" class="img-responsive zoom_img_effect"></a></div>
               <div class="meta-info">
                 <div class="content-box">
                   <ul class="post-links">
@@ -138,7 +138,7 @@
             </article>
             <!-- News 3-->
             <article class="single-blog-post img-cap-effect">
-              <div class="img-box"><a href="news-details.html" class="image_hover"><img src="images/news/3.jpg" alt="" class="img-responsive zoom_img_effect"></a></div>
+              <div class="img-box"><a href="news-details.html" class="image_hover"><img src="{{ asset('assets/images/news/3.jpg') }}" alt="" class="img-responsive zoom_img_effect"></a></div>
               <div class="meta-info">
                 <div class="content-box">
                   <ul class="post-links">
@@ -154,7 +154,7 @@
             </article>
             <!-- News 4-->
             <article class="single-blog-post img-cap-effect">
-              <div class="img-box"><a href="news-details.html" class="image_hover"><img src="images/news/4.jpg" alt="" class="img-responsive zoom_img_effect"></a></div>
+              <div class="img-box"><a href="news-details.html" class="image_hover"><img src="{{ asset('assets/images/news/4.jpg') }}" alt="" class="img-responsive zoom_img_effect"></a></div>
               <div class="meta-info">
                 <div class="content-box">
                   <ul class="post-links">

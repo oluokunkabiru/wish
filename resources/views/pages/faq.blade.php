@@ -1,15 +1,15 @@
 @extends('pages.layouts.app')
-@section('content', 'Frequent Ask Question')
+@section('title', 'Frequent Ask Question')
 @section('content')
 <section class="inner-banner2 clearfix">
     <div class="container clearfix">
-      <h2>Faq</h2>
+      <h2 class="text-center">Faq</h2>
     </div>
   </section>
   <section class="breadcumb-wrapper">
     <div class="container clearfix">
       <ul class="breadcumb">
-        <li><a href="index-2.html">Home</a></li>
+        <li><a href="{{ route('index') }}">Home</a></li>
         <li><span>FREQUENTLY ASK QUESTION</span></li>
       </ul>
     </div>
@@ -53,21 +53,21 @@
               <div class="popular-post">
                 <ul>
                   <li class="img-cap-effect">
-                    <div class="img-box"><a href="news-details.html"><img src="images/news/popular-post1.jpg" alt="Awesome Image"></a></div>
+                    <div class="img-box"><a href="news-details.html"><img src="{{ asset('assets/images/news/popular-post1.jpg') }}" alt="Awesome Image"></a></div>
                     <div class="content"><a href="#">
                         <h4>Duisau irure dolor</h4></a>
                       <p>in reprehenderit in volup tate velit esse cillum</p><span>02 Dec</span>
                     </div>
                   </li>
                   <li class="img-cap-effect">
-                    <div class="img-box"><a href="news-details.html"><img src="images/news/popular-post2.jpg" alt="Awesome Image"></a></div>
+                    <div class="img-box"><a href="news-details.html"><img src="{{ asset('assets/images/news/popular-post2.jpg') }}" alt="Awesome Image"></a></div>
                     <div class="content"><a href="#">
                         <h4>Duisau irure dolor</h4></a>
                       <p>in reprehenderit in volup tate velit esse cillum</p><span>02 Dec</span>
                     </div>
                   </li>
                   <li class="img-cap-effect">
-                    <div class="img-box"><a href="news-details.html"><img src="images/news/popular-post3.jpg" alt="Awesome Image"></a></div>
+                    <div class="img-box"><a href="news-details.html"><img src="{{ asset('assets/images/news/popular-post3.jpg') }}" alt="Awesome Image"></a></div>
                     <div class="content"><a href="#">
                         <h4>Duisau irure dolor</h4></a>
                       <p>in reprehenderit in volup tate velit esse cillum</p><span>02 Dec</span>
@@ -121,7 +121,7 @@
                   <h3>Duis aute irure dolor in reprehenderit in voluptate</h3>
                   <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam.</p>
                   <div class="img-caption">
-                    <div class="img-box"><img src="images/accrodion-2.jpg" alt="Awesome Image" class="img-responsive"></div>
+                    <div class="img-box"><img src="{{ asset('assets/images/accrodion-2.jpg') }}" alt="Awesome Image" class="img-responsive"></div>
                     <div class="content-box">
                       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect. eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum</p>
                     </div>
@@ -136,7 +136,7 @@
                   <h3>Duis aute irure dolor in reprehenderit in voluptate</h3>
                   <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam.</p>
                   <div class="img-caption">
-                    <div class="img-box"><img src="images/accrodion-2.jpg" alt="Awesome Image" class="img-responsive"></div>
+                    <div class="img-box"><img src="{{ asset('assets/images/accrodion-2.jpg') }}" alt="Awesome Image" class="img-responsive"></div>
                     <div class="content-box">
                       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect. eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum</p>
                     </div>
@@ -151,7 +151,7 @@
                   <h3>Duis aute irure dolor in reprehenderit in voluptate</h3>
                   <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam.</p>
                   <div class="img-caption">
-                    <div class="img-box"><img src="images/accrodion-2.jpg" alt="Awesome Image" class="img-responsive"></div>
+                    <div class="img-box"><img src="{{ asset('assets/images/accrodion-2.jpg') }}" alt="Awesome Image" class="img-responsive"></div>
                     <div class="content-box">
                       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect. eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum</p>
                     </div>
@@ -166,7 +166,7 @@
                   <h3>Duis aute irure dolor in reprehenderit in voluptate</h3>
                   <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam.</p>
                   <div class="img-caption">
-                    <div class="img-box"><img src="images/accrodion-2.jpg" alt="Awesome Image" class="img-responsive"></div>
+                    <div class="img-box"><img src="{{ asset('assets/images/accrodion-2.jpg') }}" alt="Awesome Image" class="img-responsive"></div>
                     <div class="content-box">
                       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect. eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum</p>
                     </div>
@@ -181,7 +181,7 @@
                   <h3>Duis aute irure dolor in reprehenderit in voluptate</h3>
                   <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam.</p>
                   <div class="img-caption">
-                    <div class="img-box"><img src="images/accrodion-2.jpg" alt="Awesome Image" class="img-responsive"></div>
+                    <div class="img-box"><img src="{{ asset('assets/images/accrodion-2.jpg') }}" alt="Awesome Image" class="img-responsive"></div>
                     <div class="content-box">
                       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect. eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum</p>
                     </div>
@@ -196,7 +196,7 @@
                   <h3>Duis aute irure dolor in reprehenderit in voluptate</h3>
                   <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam.</p>
                   <div class="img-caption">
-                    <div class="img-box"><img src="images/accrodion-2.jpg" alt="Awesome Image" class="img-responsive"></div>
+                    <div class="img-box"><img src="{{ asset('assets/images/accrodion-2.jpg') }}" alt="Awesome Image" class="img-responsive"></div>
                     <div class="content-box">
                       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect. eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum</p>
                     </div>
@@ -211,7 +211,7 @@
                   <h3>Duis aute irure dolor in reprehenderit in voluptate</h3>
                   <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam.</p>
                   <div class="img-caption">
-                    <div class="img-box"><img src="images/accrodion-2.jpg" alt="Awesome Image" class="img-responsive"></div>
+                    <div class="img-box"><img src="{{ asset('assets/images/accrodion-2.jpg') }}" alt="Awesome Image" class="img-responsive"></div>
                     <div class="content-box">
                       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect. eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, eos qui ratione eos qui ratione eos qui ratione</p>
                     </div>
@@ -231,7 +231,7 @@
                   <h3>Duis aute irure dolor in reprehenderit in voluptate</h3>
                   <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam.</p>
                   <div class="img-caption">
-                    <div class="img-box"><img src="images/accrodion-2.jpg" alt="Awesome Image" class="img-responsive"></div>
+                    <div class="img-box"><img src="{{ asset('assets/images/accrodion-2.jpg') }}" alt="Awesome Image" class="img-responsive"></div>
                     <div class="content-box">
                       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect. eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum</p>
                     </div>
@@ -246,7 +246,7 @@
                   <h3>Duis aute irure dolor in reprehenderit in voluptate</h3>
                   <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam.</p>
                   <div class="img-caption">
-                    <div class="img-box"><img src="images/accrodion-2.jpg" alt="Awesome Image" class="img-responsive"></div>
+                    <div class="img-box"><img src="{{ asset('assets/images/accrodion-2.jpg') }}" alt="Awesome Image" class="img-responsive"></div>
                     <div class="content-box">
                       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect. eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum</p>
                     </div>
@@ -261,7 +261,7 @@
                   <h3>Duis aute irure dolor in reprehenderit in voluptate</h3>
                   <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam.</p>
                   <div class="img-caption">
-                    <div class="img-box"><img src="images/accrodion-2.jpg" alt="Awesome Image" class="img-responsive"></div>
+                    <div class="img-box"><img src="{{ asset('assets/images/accrodion-2.jpg') }}" alt="Awesome Image" class="img-responsive"></div>
                     <div class="content-box">
                       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect. eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum</p>
                     </div>
@@ -276,7 +276,7 @@
                   <h3>Duis aute irure dolor in reprehenderit in voluptate</h3>
                   <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam.</p>
                   <div class="img-caption">
-                    <div class="img-box"><img src="images/accrodion-2.jpg" alt="Awesome Image" class="img-responsive"></div>
+                    <div class="img-box"><img src="{{ asset('assets/images/accrodion-2.jpg') }}" alt="Awesome Image" class="img-responsive"></div>
                     <div class="content-box">
                       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect. eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum</p>
                     </div>
@@ -291,7 +291,7 @@
                   <h3>Duis aute irure dolor in reprehenderit in voluptate</h3>
                   <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam.</p>
                   <div class="img-caption">
-                    <div class="img-box"><img src="images/accrodion-2.jpg" alt="Awesome Image" class="img-responsive"></div>
+                    <div class="img-box"><img src="{{ asset('assets/images/accrodion-2.jpg') }}" alt="Awesome Image" class="img-responsive"></div>
                     <div class="content-box">
                       <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect etur, adipisci velit, sed quia non numquam. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consect. eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum</p>
                     </div>

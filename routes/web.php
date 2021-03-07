@@ -20,10 +20,14 @@ Route::get('/', 'PagesController@index')->name('index');
 Route::get('/about-us', 'PagesController@about')->name('about');
 Route::get('/news', 'PagesController@news')->name('news');
 Route::get('/projects', 'PagesController@projects')->name('projects');
-Route::get('/', 'PagesController@index')->name('index');
-Route::get('/', 'PagesController@index')->name('index');
-Route::get('/', 'PagesController@index')->name('index');
-Route::get('/', 'PagesController@index')->name('index');
+Route::get('/faq', 'PagesController@faq')->name('faq');
+Route::get('/contact-us', 'PagesController@contact')->name('contact');
+Route::get('/project-details', 'PagesController@project_details')->name('project_details');
+Route::get('/shop', 'PagesController@shop')->name('shop');
+Route::get('/team', 'PagesController@team')->name('team');
+Route::get('/testimony', 'PagesController@testimony')->name('testimony');
+Route::get('/news-details', 'PagesController@news_details')->name('news_details');
+Route::get('/our-service', 'PagesController@service')->name('service');
 
 Auth::routes();
 

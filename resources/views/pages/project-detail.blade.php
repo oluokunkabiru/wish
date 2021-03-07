@@ -3,13 +3,13 @@
 @section('content')
 <section class="inner-banner2 clearfix">
     <div class="container clearfix">
-      <h2>Projects</h2>
+      <h2 class="text-center">Projects</h2>
     </div>
   </section>
   <section class="breadcumb-wrapper">
     <div class="container clearfix">
       <ul class="breadcumb">
-        <li><a href="index-2.html"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="{{ route('index') }}"><i class="fa fa-home"></i> Home</a></li>
         <li><a href="projects.html">PROJECTS</a></li>
         <li><span>Oil Plant Project</span></li>
       </ul>
@@ -18,7 +18,7 @@
   <!-- Projects  Details-->
   <section class="core-projects sectpad">
     <div class="container clearfix">
-      <div class="pro-det-img"><img src="images/projects/pro-de-img1.jpg" alt=""></div>
+      <div class="pro-det-img"><img src="{{ asset('assets/images/projects/pro-de-img1.jpg') }}" alt=""></div>
       <div class="pro-content clearfix">
         <h1>Oil Plant Project</h1>
         <h4>Project Desciption</h4>
@@ -44,7 +44,7 @@
       </div>
       <div class="project-scop clearfix">
         <div class="row">
-          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 pro-img"><img src="images/projects/pro-de-img2.jpg" alt=""></div>
+          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 pro-img"><img src="{{ asset('assets/images/projects/pro-de-img2.jpg') }}" alt=""></div>
           <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
             <h3>Work Scope</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>

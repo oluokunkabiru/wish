@@ -27,11 +27,11 @@ class PagesController extends Controller
         return view('pages.news-detail');
     }
 
-    public function project(){
+    public function projects(){
         return view('pages.project');
     }
     public function project_details(){
-        return view('pages.project-details');
+        return view('pages.project-detail');
     }
     public function shop(){
         return view('pages.shop');
@@ -39,6 +39,19 @@ class PagesController extends Controller
 
     public function contact(){
         return view('pages.contact');
+    }
+    public function team(){
+        return view('pages.team');
+    }
+    public function testimony(){
+        return view('pages.testimony');
+    }
+    public function faq(){
+        return view('pages.faq');
+    }
+
+    public function service(){
+        return view('pages.service');
     }
 
 
