@@ -61,15 +61,15 @@
                 </div>
                 <div class="nav-t-footer">
                   <ul class="nav">
-                    <li class="has-t-submenu"><a href="index-2.html">Home</a>
-                      <ul class="submenu">
+                    <li class="has-t-submenu"><a href="{{ route('index') }}">Home</a>
+                      {{-- <ul class="submenu">
                         <li><a href="index-3.html">Home Two</a></li>
                         <li><a href="index-4.html">Home Three</a></li>
                         <li><a href="index-5.html">Home Four</a></li>
                         <li><a href="index-6.html">Home Five</a></li>
-                      </ul>
+                      </ul> --}}
                     </li>
-                    <li class="has-t-submenu"><a href="about.html">about us</a>
+                    <li class="has-t-submenu"><a href="{{ route('about') }}">about us</a>
                       <ul class="submenu">
                         <li><a href="team.html">Our Team</a></li>
                         <li><a href="testimonials.html">Testimonials</a></li>
