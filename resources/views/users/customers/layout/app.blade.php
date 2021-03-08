@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>KOADIT - @yield('title')</title>
     @include('users.customers.layout.style')
+    @yield('style')
 </head>
 <body>
     <div id="app">
@@ -24,6 +25,7 @@
 
 
     @include('users.customers.layout.script')
+    @yield('script')
 </body>
 </html>
 

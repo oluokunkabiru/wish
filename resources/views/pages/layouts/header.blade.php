@@ -124,8 +124,21 @@
                       <li class="has-t-submenu"><a href="{{ route('login') }}">
                         {{ Auth::user()->name }}
                     </a>
+                    @php
+                    switch(Auth::user()->role)
+                    {
+                        case 'admin':
+                        $url =  route('admindashboard');  //'/'.app()->getLocale().'/users/admin';
+                         break;
+                         case 'user':
+                        $url =  route('usersdashboard'); //'/'.app()->getLocale().'/users/dashboard';
+                         break;
+                         default:
+                         $url = route('index');
+                    }
+                    @endphp
                         <ul class="submenu">
-                            <li><a href="{{ route('register') }}">Dashboard</a></li>
+                            <li><a href="{{ $url}}">Dashboard</a></li>
                             <li><a href="{{ route('register') }}">History</a></li>
                             <li><a href="{{ route('register') }}">Event</a></li>
 

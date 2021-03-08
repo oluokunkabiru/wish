@@ -35,8 +35,16 @@ Route::get('/our-service', 'PagesController@service')->name('service');
 Auth::routes();
 Route::prefix('users')->middleware(['auth', 'users'])->group(function () {
     Route::get('/dashboard', 'users\UsersController@index')->name('usersdashboard');
+    Route::resource('media-gallery', 'Media');
 
 });
+
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
+    Route::get('/dashboard', 'admin\AdminController@index')->name('admindashboard');
+
+
+});
+
 
 
 
