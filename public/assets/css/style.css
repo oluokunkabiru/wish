@@ -11,7 +11,7 @@
 4 Header Menu styles
 5 Banner styles
 6 Welcome to industrial styles
-7 Our Services styles 
+7 Our Services styles
 8 Our Services natural resource styles
 9 Our Project Slider styles
 10 Testimonial home styles
@@ -57,7 +57,16 @@
 /* ==============================
    2 Global styles
    ============================== */
+/* my new added css */
 
+.invalid-feedback{
+    color: red;
+}
+.is-invalid{
+    border: red solid 5px;
+}
+
+/* end my new added css */
 .clearfix {
     clear: both;
 }
@@ -512,12 +521,12 @@ body {
     position: fixed;
     top: 0px;
     /*top: 10px;*/
-    
+
     left: 0;
     width: 100%;
     z-index: 9999;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,fafafa+19,e2e2e2+69,d7d7d7+100 */
-    
+
     background: #009bb3;
 }
 .main-menu-wrapper.stricky-fixed .free-qoute-button {
@@ -717,17 +726,17 @@ body {
     transition: all .3s ease;
     z-index: -1;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,fafafa+19,e2e2e2+69,d7d7d7+100 */
-    
+
     background: #ffffff;
     /* Old browsers */
     /* FF3.6-15 */
-    
+
     background: -webkit-linear-gradient(top, #ffffff 0%, #fafafa 19%, #e2e2e2 69%, #d7d7d7 100%);
     /* Chrome10-25,Safari5.1-6 */
-    
+
     background: linear-gradient(to bottom, #ffffff 0%, #fafafa 19%, #e2e2e2 69%, #d7d7d7 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    
+
     filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#d7d7d7', GradientType=0)
     /* IE6-9 */
 }
@@ -1390,7 +1399,7 @@ img {
     width: 100px;
     /*border: 2px solid #FFFFFF;*/
     /*box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.3); opacity: 1 !important;*/
-    
+
     border-radius: 50%;
     display: inline-block;
 }
@@ -2155,7 +2164,7 @@ img {
     position: absolute;
     border: 1px solid #fff;
     /*z-index: -1;*/
-    
+
     display: block;
     top: 10px;
     left: 10px;
@@ -2475,7 +2484,7 @@ img {
     padding-top: 0;
 }
 /* ==============================
-  19. Services Page styles 
+  19. Services Page styles
 ============================== */
 
 .service-tab-box h1 {
@@ -2681,30 +2690,30 @@ img {
 }
 .single-sidebar-widget .search-box form input::-webkit-input-placeholder {
     /* WebKit, Blink, Edge */
-    
+
     color: rgba(255, 255, 255, 0.5);
     opacity: 1;
 }
 .single-sidebar-widget .search-box form input:-moz-placeholder {
     /* Mozilla Firefox 4 to 18 */
-    
+
     color: rgba(255, 255, 255, 0.5);
     opacity: 1;
 }
 .single-sidebar-widget .search-box form input::-moz-placeholder {
     /* Mozilla Firefox 19+ */
-    
+
     color: rgba(255, 255, 255, 0.5);
     opacity: 1;
 }
 .single-sidebar-widget .search-box form input:-ms-input-placeholder {
     /* Internet Explorer 10-11 */
-    
+
     color: rgba(255, 255, 255, 0.5);
 }
 .single-sidebar-widget .search-box form input:placeholder-shown {
     /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
-    
+
     color: rgba(186, 185, 185, 1);
 }
 .single-sidebar-widget .search-box form button {
@@ -3084,7 +3093,7 @@ img {
    .project-post-area .project-fullscreen
     {
         width: 50%;
-    } 
+    }
 }
 @media (max-width: 767px) {
     .project-post-info {
@@ -5567,7 +5576,7 @@ blockquote footer a {
 .testimonial-t-sec .testimonialn-slider img {
     width: 130px;
     /* border: 2px solid #FFFFFF; */
-    
+
     border-radius: 50%;
     display: inline-block;
 }
@@ -5618,7 +5627,7 @@ blockquote footer a {
 .service-t-content {
     /*position: relative;
     padding: 3em 20em 4em 7em;*/
-    
+
     max-width: 670px;
     margin: 0;
     z-index: 2;
@@ -6026,7 +6035,7 @@ blockquote footer a {
     padding-bottom: 5.7em;
 }
 /* ==============================
-  39. product solutions  
+  39. product solutions
 ============================== */
 
 .our-sol-wrapper {
@@ -6051,7 +6060,7 @@ blockquote footer a {
     padding-bottom: 5.5em;
 }
 /* ==============================
-  40. our clients & Get in touch  
+  40. our clients & Get in touch
 ============================== */
 
 .our-t-client {
@@ -6072,7 +6081,7 @@ blockquote footer a {
     margin: 0 1em 1.2em 0;
     padding: 0;
     /*display: inline-block;*/
-    
+
     float: left;
 }
 .our-t-client ul li:last-child {
@@ -6211,7 +6220,7 @@ blockquote footer a {
     margin-bottom: 1em;
 }
 /* ==============================
-  40. about-us-section 
+  40. about-us-section
 ============================== */
 
 .about-us-section {
@@ -6703,7 +6712,7 @@ h1.bnrfnt50 span.color3 {
 #minimal-bootstrap-carousel.ver_new_2_slider .carousel-inner .carousel-caption .thm-container .box.valign-top .content{
     padding-top: 165px;
 }
-#minimal-bootstrap-carousel.ver_new_1_slider .carousel-caption .thm-container .box.valign-top .content 
+#minimal-bootstrap-carousel.ver_new_1_slider .carousel-caption .thm-container .box.valign-top .content
 {
     padding-top: 165px;
 }
@@ -6757,7 +6766,7 @@ ul.banner_btm_list li.blue_prd_bg {
     background-size: cover;
 }
 ul.banner_btm_list li:hover {
-   
+
     z-index: 100;
     margin: -25px 0 0 0;
     min-height: 297px;
@@ -6835,12 +6844,12 @@ ul.banner_btm_list li.lytblue_prd_bg p {
 }
 .search_lightbox_input:-moz-placeholder {
     /* Firefox 18- */
-    
+
     color: #242424;
 }
 .search_lightbox_input::-moz-placeholder {
     /* Firefox 19+ */
-    
+
     color: #242424;
 }
 .search_lightbox_input:-ms-input-placeholder {
