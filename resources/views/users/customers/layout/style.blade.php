@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{ asset('assets/users/assets/modules/bootstrap/css/bootstrap.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/users/assets/modules/fontawesome/css/all.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/users/assets/modules/fontawesome-free/css/all.min.css') }}">
 
 <!-- CSS Libraries -->
 <link rel="stylesheet" href="{{ asset('assets/users/assets/modules/jqvmap/dist/jqvmap.min.css') }}">
