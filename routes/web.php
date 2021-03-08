@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,9 @@ Route::get('/team', 'PagesController@team')->name('team');
 Route::get('/testimony', 'PagesController@testimony')->name('testimony');
 Route::get('/news-details', 'PagesController@news_details')->name('news_details');
 Route::get('/our-service', 'PagesController@service')->name('service');
+Route::get('/dashboard', function () {
+    return view('users.customers.dashboard');
+});
 
 Auth::routes();
 
