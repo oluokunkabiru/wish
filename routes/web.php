@@ -29,10 +29,15 @@ Route::get('/team', 'PagesController@team')->name('team');
 Route::get('/testimony', 'PagesController@testimony')->name('testimony');
 Route::get('/news-details', 'PagesController@news_details')->name('news_details');
 Route::get('/our-service', 'PagesController@service')->name('service');
-Route::get('/dashboard', function () {
-    return view('users.customers.dashboard');
+
+
+// users routes
+Auth::routes();
+Route::prefix('users')->middleware(['auth', 'users'])->group(function () {
+    Route::get('/dashboard', 'users\UsersController@index')->name('usersdashboard');
+
 });
 
-Auth::routes();
+
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
