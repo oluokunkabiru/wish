@@ -12,9 +12,9 @@
 .dropzone {
 	border: 2px dashed #028AF4 !important;;
 }
-.dz-progress {
+/* .dz-progress {
 	background-color: rgb(34, 206, 34) !important;;
-}
+} */
 .dz-remove {
 	color: red !important;;
 }
@@ -49,8 +49,9 @@
                     <span>Drop files here to upload</span>
                 </div>
              </div>
-             <button type="submit" class="btn btn-rounded btn-success my-2 btn-lg">Upload</button>
+             {{-- <button type="submit" class="btn btn-rounded btn-success my-2 btn-lg">Upload</button> --}}
         </form>
+        
 
     {{-- </div> --}}
     {{-- <div class="col-md-4"></div> --}}
@@ -148,11 +149,19 @@ var dropzone = null;
 
 Dropzone.autoDiscover = false;
 dropzone = $("#dropzoneDiv").dropzone({
-    url: "/api/works/upload",
-    acceptedFiles: 'image/*,video/*',
+    // Dropzone.options.dropzoneDiv={
+    url: "{{ route('useruploadmedia') }}",
+    acceptedFiles: 'image/*,video/*, audio/*',
     autoProcessQueue: false,
     createImageThumbnails: true,
-    addRemoveLinks: true
+    addRemoveLinks: true,
+    uploadMultiple:true,
+    parallelChunkUploads:true,
+    capture: 'image/*,video/*, audio/*',
+    // dictDefaultMessage:function(){
+    //     alert ('hello');
+    // }
+    // };
 });
 
 function submitForm() {

@@ -36,6 +36,7 @@ Auth::routes();
 Route::prefix('users')->middleware(['auth', 'users'])->group(function () {
     Route::get('/dashboard', 'users\UsersController@index')->name('usersdashboard');
     Route::resource('media-gallery', 'Media');
+    Route::post('useruploadmedia','Media@store')->name('useruploadmedia') ;
 
 });
 
