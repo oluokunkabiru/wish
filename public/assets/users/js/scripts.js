@@ -16,9 +16,9 @@ Chart.defaults.global.tooltips.cornerRadius = 3;
 }
 
 // DropzoneJS
-if(window.Dropzone) {
-    Dropzone.autoDiscover = false;
-}
+// if(window.Dropzone) {
+//     Dropzone.autoDiscover = false;
+// }
 $(function() {
     setTimeout(function() {
         $('.page-loader-wrapper').fadeOut();
@@ -63,7 +63,7 @@ let sidebar_nicescroll_opts = {
 }, now_layout_class = null;
 
 var sidebar_sticky = function() {
-    if($("body").hasClass('layout-2')) {    
+    if($("body").hasClass('layout-2')) {
     $("body.layout-2 #sidebar-wrapper").stick_in_parent({
         parent: $('body')
     });
@@ -333,7 +333,7 @@ $(".message-toggle").parent().on('shown.bs.dropdown', function() {
     });
 });
 
-if($(".chat-content").length) { 
+if($(".chat-content").length) {
     $(".chat-content").niceScroll({
         cursoropacitymin: .3,
         cursoropacitymax: .8,
@@ -341,7 +341,7 @@ if($(".chat-content").length) {
     $('.chat-content').getNiceScroll(0).doScrollTop($('.chat-content').height());
 }
 
-if(jQuery().summernote) {   
+if(jQuery().summernote) {
     $(".summernote").summernote({
         dialogsInBody: true,
         minHeight: 250,
@@ -443,7 +443,7 @@ $(".gallery .gallery-item").each(function() {
         backgroundImage: 'url("'+ me.data('image') +'")'
     });
 });
-if(jQuery().Chocolat) { 
+if(jQuery().Chocolat) {
     $(".gallery").Chocolat({
         className: 'gallery',
         imageSelector: '.gallery-item',

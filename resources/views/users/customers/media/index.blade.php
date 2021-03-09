@@ -41,21 +41,28 @@
 
     <div class="section-body">
 <div class="row">
-    {{-- <div class="col-md-4"></div> --}}
-    {{-- <div class="col-md-4 py-3"> --}}
-        <form id="dropezone" method="post" enctype="multipart/form-data">
-            <div id="dropzoneDiv" class="dropzone dz-clickable">
-                <div class="dz-default dz-message">
-                    <span>Drop files here to upload</span>
-                </div>
-             </div>
-             {{-- <button type="submit" class="btn btn-rounded btn-success my-2 btn-lg">Upload</button> --}}
-        </form>
-        
 
-    {{-- </div> --}}
-    {{-- <div class="col-md-4"></div> --}}
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3>File Upload</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data" class="dropzone dz-clickable" id="image-upload">
+                    @csrf
+                    <div>
+                        <h3 class="text-center">Upload Files here</h3>
+                    </div>
+                    <div class="dz-default dz-message">Drag and drop you file or click here to upload</div>
+
+                </form>
+            </div>
+        </div>
+        {{-- <button type="submit" class="float-right mr-5 mt-3 btn btn-rounded btn-success btn-lg" onsubmit="uploadFiles()">Upload</button> --}}
+
+    </div>
 </div>
+
 
         <div class="row">
             <div class="col-12 col-sm-12 col-lg-4">
@@ -148,11 +155,11 @@
 var dropzone = null;
 
 Dropzone.autoDiscover = false;
-dropzone = $("#dropzoneDiv").dropzone({
-    // Dropzone.options.dropzoneDiv={
+dropzone = $("#image-upload").dropzone({
+    // Dropzone.options.image-upload={
     url: "{{ route('useruploadmedia') }}",
     acceptedFiles: 'image/*,video/*, audio/*',
-    autoProcessQueue: false,
+    autoProcessQueue: true,
     createImageThumbnails: true,
     addRemoveLinks: true,
     uploadMultiple:true,
@@ -164,10 +171,10 @@ dropzone = $("#dropzoneDiv").dropzone({
     // };
 });
 
-function submitForm() {
-    dropzone.processQueue();
-    return false;
-}
+// function uploadFiles() {
+//     dropzone.processQueue();
+//     return false;
+// }
 </script>
 @endsection
 
