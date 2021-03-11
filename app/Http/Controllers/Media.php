@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Spatie\MediaLibrary\Conversions\ImageGenerators\Video;
 
 class Media extends Controller
 {
@@ -14,7 +17,13 @@ class Media extends Controller
     public function index()
     {
         //
-        return view('users.customers.media.index');
+        $medias = File::where('user_id', Auth::user()->id)->get();
+        // $medias = File::getMedia('image');
+        // return $medias;
+        // foreach($medias as $media){
+        //     print_r($media->getMedia('image'));
+        // }
+        return view('users.customers.media.index', compact(['medias']));
     }
 
     /**
@@ -36,6 +45,56 @@ class Media extends Controller
     public function store(Request $request)
     {
         //
+        $file = $request->file('file');
+        $audio = ['mp3','rm', 'wma', 'aac', 'wav', 'wav'];
+        $video = ['flu', 'mp4','m3u8', 'ts', '3gp', 'mov', 'avi', 'wmv'];
+        $imagetype = ['jpeg', 'png', 'gif', 'jpg', 'bmp', 'eps', 'raw', 'indd', 'ai', 'tiff'];
+        $filetype = strtolower($file->getClientOriginalExtension());
+        $files = explode(".", $file->getClientOriginalName());
+        $media = new File();
+        $collection = "default";
+        if(in_array($filetype, $imagetype)){
+            $collection = "image";
+             $fileName = $files[0].'.png';
+             $media->addMediaFromRequest('file')->usingFileName($fileName)->toMediaCollection($collection);
+            $media->user_id = Auth::user()->id;
+            $media->media_id =3;
+            $media->save();
+            // return $media->getMediaCollection()
+
+        }elseif(in_array($filetype, $video)){
+            $collection = "video";
+            $fileName = $files[0].'.mp4';
+             $media->addMediaFromRequest('file')->usingFileName($fileName)->toMediaCollection($collection);
+            $media->user_id = Auth::user()->id;
+            $media->media_id =3;
+            $media->save();
+
+        }elseif(in_array($filetype, $audio)){
+            $collection = "audio";
+            $fileName = $files[0].'.mp3';
+             $media->addMediaFromRequest('file')->usingFileName($fileName)->toMediaCollection($collection);
+            $media->user_id = Auth::user()->id;
+            $media->media_id =3;
+            $media->save();
+
+        }else{
+             $collection = "default";
+             $media->addMediaFromRequest('file')->toMediaCollection($collection);
+            $media->user_id = Auth::user()->id;
+            $media->media_id =3;
+            $media->save();
+        }
+        // return print_r($file);
+        // $fileName =time().$file->getClientOriginalName();
+        // $file->move('uploads/media/',$fileName);
+
+
+        // $media->addMediaFromRequest('file')->toMediaCollection();
+        // $media->user_id = Auth::user()->id;
+        // $media->media_id =3;
+        // $media->save();
+
     }
 
     /**
