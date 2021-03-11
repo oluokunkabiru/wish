@@ -17,7 +17,8 @@ class Media extends Controller
     public function index()
     {
         //
-        $medias = File::where('user_id', Auth::user()->id)->get();
+        $medias = File::with('media')->where('user_id', Auth::user()->id)->get();
+
         // $medias = File::getMedia('image');
         // return $medias;
         // foreach($medias as $media){
@@ -46,7 +47,7 @@ class Media extends Controller
     {
         //
         $file = $request->file('file');
-        $audio = ['mp3','rm', 'wma', 'aac', 'wav', 'wav'];
+        $audio = ['mp3','rm', 'wma', 'aac', 'wav', 'wav','mpeg', '3gpp'];
         $video = ['flu', 'mp4','m3u8', 'ts', '3gp', 'mov', 'avi', 'wmv'];
         $imagetype = ['jpeg', 'png', 'gif', 'jpg', 'bmp', 'eps', 'raw', 'indd', 'ai', 'tiff'];
         $filetype = strtolower($file->getClientOriginalExtension());

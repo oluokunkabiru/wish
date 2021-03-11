@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="{{ asset('assets/users/assets/modules/dist/min/dropzone.min.css') }}">
 
 <link rel="stylesheet" href="{{ asset('assets/users/assets/modules/fontawesome-free/css/all.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/users/assets/modules/chocolat/dist/css/chocolat.css') }}">
 
 <!-- CSS Libraries -->
 <link rel="stylesheet" href="{{ asset('assets/users/assets/modules/jqvmap/dist/jqvmap.min.css') }}">
