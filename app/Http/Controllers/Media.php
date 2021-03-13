@@ -141,5 +141,7 @@ class Media extends Controller
     public function destroy($id)
     {
         //
+        $file = File::find($id);
+        return $file;
     }
 }

@@ -67,23 +67,52 @@
 
                     <div class="card-body">
                         <div class="gallery gallery-fw" data-item-height="200">
-                            {{-- <div class="row"> --}}
+                            <div class="row">
                                 @foreach ($medias as $media)
                                @php
                                    $image = $media->getMedia('image');
                                @endphp
                                @if (count($image)!=null)
                                  {{-- <a href="{{ url($image->first()->getUrl() )}}">  {{ $image->first()->name }}</a>  <br> --}}
+                                <div class="col-md-4 col-sm-12 ">
+                                    {{-- <img src="{{ url($image->first()->getUrl() )}}" data-image="{{ url($image->first()->getUrl() )}}" data-title="{{ $image->first()->name }}"  alt="{{ $image->first()->name }}" class="card-img rounded gallery-item" style="height: 200px"> --}}
+                                    <div class="gallery-item" style="height: 200px; float: none;" data-image="{{ url($image->first()->getUrl() )}}" data-title="{{ $image->first()->name }}">
+                                    </div>
 
-                                <div class="gallery-item col-md-3 col-lg-3 col-sm-12" data-image="{{ url($image->first()->getUrl() )}}" data-title="{{ $image->first()->name }}"></div>
+                                    <div class="row mb-2">
+                                        <div class="col ">
+                                              <button class="btn btn-success">Choose</button>
+                                        </div>
+                                        <div class="col">
+                                            <form  action="{{ route('media-gallery.destroy', $image->first()->id) }}" method="post">
+                                                {{ csrf_field() }}
+                                                @method('DELETE')
+                                                <button class="btn btn-danger btn-rounded" type="submit">Delete</button>
+                                             </form>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+
+                                {{-- <div class="gallery-item col-md-3 col-lg-3 col-sm-12" data-image="{{ url($image->first()->getUrl() )}}" data-title="{{ $image->first()->name }}">
+
+
+
+
+                                </div> --}}
+
                                @endif
 
                                 @endforeach
-                            {{-- </div> --}}
+                            </div>
 
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
