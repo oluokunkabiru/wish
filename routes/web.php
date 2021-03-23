@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+// use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +38,12 @@ Route::prefix('users')->middleware(['auth', 'users'])->group(function () {
     Route::get('/dashboard', 'users\UsersController@index')->name('usersdashboard');
     Route::resource('media-gallery', 'Media');
     Route::post('useruploadmedia','Media@store')->name('useruploadmedia') ;
+    Route::get('photo-gallery', 'Media@photoGallery')->name('photoGallery');
+    Route::get('audio-gallery', 'Media@audioGallery')->name('audioGallery');
+    Route::get('video-gallery', 'Media@videoGallery')->name('videoGallery');
+    Route::get('/download/{image}', 'Media@downloadSingle')->name('downloadSingleMedial');
 
+    Route::get('download/images', 'Media@downloadImage')->name('downloadImage');
 });
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {

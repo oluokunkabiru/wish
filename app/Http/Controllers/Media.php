@@ -6,6 +6,8 @@ use App\Models\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\Conversions\ImageGenerators\Video;
+use Spatie\MediaLibrary\MediaCollections\Models\Media as myMedia;
+
 
 class Media extends Controller
 {
@@ -27,6 +29,21 @@ class Media extends Controller
         return view('users.customers.media.index', compact(['medias']));
     }
 
+    public function photoGallery(){
+                $medias = File::with('media')->where('user_id', Auth::user()->id)->get();
+        return view('users.customers.media.photo', compact(['medias']));
+
+    }
+     public function videoGallery(){
+                $medias = File::with('media')->where('user_id', Auth::user()->id)->get();
+        return view('users.customers.media.video', compact(['medias']));
+
+    }
+     public function audioGallery(){
+                $medias = File::with('media')->where('user_id', Auth::user()->id)->get();
+        return view('users.customers.media.audio', compact(['medias']));
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -142,6 +159,16 @@ class Media extends Controller
     {
         //
         $file = File::find($id);
-        return $file;
+        $file->delete($id);
+        $file->clearMediaCollection();
+        return redirect()->back()->with('success', 'File deleted successfully');
+    }
+// public function downloadSingle(myMedia $media){
+//     return $media;
+// }
+    public function downloadImage(File $file){
+       $download=  $file->getMedia('image');
+        return "hello";
+
     }
 }

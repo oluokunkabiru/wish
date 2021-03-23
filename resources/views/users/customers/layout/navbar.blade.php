@@ -72,9 +72,9 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Media</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('media-gallery.index') }}">All Media</a></li>
-                    <li><a class="nav-link" href="bootstrap-badge.html">Photos</a></li>
-                    <li><a class="nav-link" href="bootstrap-breadcrumb.html">Audios</a></li>
-                    <li><a class="nav-link" href="bootstrap-buttons.html">Videos</a></li>
+                    <li><a class="nav-link" href="{{ route('photoGallery') }}">Photos</a></li>
+                    <li><a class="nav-link" href="{{ route('audioGallery') }}">Audios</a></li>
+                    <li><a class="nav-link" href="{{ route('videoGallery') }}">Videos</a></li>
 
                 </ul>
             </li>
