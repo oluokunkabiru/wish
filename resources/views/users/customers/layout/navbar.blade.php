@@ -78,20 +78,20 @@
 
                 </ul>
             </li>
-            <li class="menu-header">Article</li>
+            {{-- <li class="menu-header">Category</li>
             <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Typewriter</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Category</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="components-article.html">Manage Typewriter</a></li>
+                    <li><a class="nav-link" href="components-article.html">Manage Category</a></li>
                 </ul>
             </li>
-            <li class="dropdown">
+             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Articles</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="forms-advanced-form.html">Managed Article</a></li>
 
                 </ul>
-            </li>
+            </li> --}}
 
 
             <li class="menu-header">Themes</li>

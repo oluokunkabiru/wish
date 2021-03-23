@@ -292,7 +292,7 @@ Dropzone.autoDiscover = false;
 dropzone = $("#image-upload").dropzone({
     // Dropzone.options.image-upload={
     url: "{{ route('useruploadmedia') }}",
-    // acceptedFiles: 'image/*,video/*, audio/*',
+    acceptedFiles: 'image/*,video/*, audio/*',
     autoProcessQueue: true,
     createImageThumbnails: true,
     addRemoveLinks: true,

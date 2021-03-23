@@ -36,18 +36,24 @@ Route::get('/our-service', 'PagesController@service')->name('service');
 Auth::routes();
 Route::prefix('users')->middleware(['auth', 'users'])->group(function () {
     Route::get('/dashboard', 'users\UsersController@index')->name('usersdashboard');
-    Route::resource('media-gallery', 'Media');
-    Route::post('useruploadmedia','Media@store')->name('useruploadmedia') ;
-    Route::get('photo-gallery', 'Media@photoGallery')->name('photoGallery');
-    Route::get('audio-gallery', 'Media@audioGallery')->name('audioGallery');
-    Route::get('video-gallery', 'Media@videoGallery')->name('videoGallery');
-    Route::get('/download/{image}', 'Media@downloadSingle')->name('downloadSingleMedial');
+    Route::resource('media-gallery', 'users\usersMedia');
+    Route::post('useruploadmedia','users\usersMedia@store')->name('useruploadmedia') ;
+    Route::get('photo-gallery', 'users\usersMedia@photoGallery')->name('photoGallery');
+    Route::get('audio-gallery', 'users\usersMedia@audioGallery')->name('audioGallery');
+    Route::get('video-gallery', 'users\usersMedia@videoGallery')->name('videoGallery');
+    Route::get('/download/{image}', 'users\usersMedia@downloadSingle')->name('downloadSingleMedial');
 
-    Route::get('download/images', 'Media@downloadImage')->name('downloadImage');
+    Route::get('download/images', 'usersMedia@downloadImage')->name('downloadImage');
 });
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', 'admin\AdminController@index')->name('admindashboard');
+      Route::resource('admin-media-gallery', 'admin\adminMedia');
+    Route::post('useruploadmedia','admin\adminMedia@store')->name('adminUploadMedia') ;
+    Route::get('admin-photo-gallery', 'admin\adminMedia@photoGallery')->name('adminPhotoGallery');
+    Route::get('admin-audio-gallery', 'admin\adminMedia@audioGallery')->name('adminAudioGallery');
+    Route::get('admin-video-gallery', 'admin\adminMedia@videoGallery')->name('adminVideoGallery');
+    Route::resource('category', 'admin\categoryController');
 
 
 });
