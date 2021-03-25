@@ -107,9 +107,11 @@
                 <ul class="dropdown-menu">
                     <li><a href="{{ route('theme.create') }}">Add New Theme</a></li>
                     <li><a href="{{ route('theme.index') }}">Manage Theme</a></li>
-
+                    <li><a href="{{ route('themePreview') }}">View Theme</a></li>
                 </ul>
             </li>
+
+
             <li class="menu-header">Settings</li>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-cog"></i> <span>Settings</span></a>

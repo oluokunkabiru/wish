@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\templateController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 // use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -56,7 +57,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('category', 'admin\categoryController');
     Route::resource('theme', 'admin\themeController');
     Route::post('activateTheme', 'admin\themeController@activateTheme')->name('activateTheme');
-
+    Route::resource('template', 'admin\templateController');
+    Route::get('theme-view', 'admin\themeController@themePreview')->name('themePreview');
 
 });
 

@@ -29,6 +29,11 @@ class themeController extends Controller
         return view('users.admin.theme.index', compact(['themies', 'categories']));
     }
 
+    public function themePreview(){
+        $themies = Theme::with(['user', 'category', 'media'])->orderBy('id', 'desc')->get();
+        // return $themies;
+        return view('users.admin.theme.view', compact(['themies']));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -60,10 +65,12 @@ class themeController extends Controller
         if(count($fileType)!=3){
             // return "This is not expected interface";
             return redirect()->back()->with('interface', 'This is not expected interface');
-        }elseif($fileType[1]!="blade" && $fileType[2]!="php"){
+        }elseif($fileType[1]!="blade" || $fileType[2]!="php"){
             // return "Interface must be a file with extension .blade.php";
             return redirect()->back()->with('interface', 'Interface must be a file with extension .blade.php');
         }else{
+        //     return $fileType[1];
+        // }
 
         $theme->addMediaFromRequest('script')->toMediaCollection('script');
         $theme->addMediaFromRequest('style')->toMediaCollection('style');
