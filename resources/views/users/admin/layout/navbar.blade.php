@@ -103,12 +103,11 @@
 
             <li class="menu-header">Themes</li>
             <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Themes</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-compass"></i> <span>Themes</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="auth-forgot-password.html">Birthday</a></li>
-                    <li><a href="auth-login.html">Wedding</a></li>
-                    <li><a href="auth-register.html">Graduation</a></li>
-                    <li><a href="auth-reset-password.html">Admission</a></li>
+                    <li><a href="{{ route('theme.create') }}">Add New Theme</a></li>
+                    <li><a href="{{ route('theme.index') }}">Manage Theme</a></li>
+
                 </ul>
             </li>
             <li class="menu-header">Settings</li>

@@ -54,6 +54,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('admin-audio-gallery', 'admin\adminMedia@audioGallery')->name('adminAudioGallery');
     Route::get('admin-video-gallery', 'admin\adminMedia@videoGallery')->name('adminVideoGallery');
     Route::resource('category', 'admin\categoryController');
+    Route::resource('theme', 'admin\themeController');
+    Route::post('activateTheme', 'admin\themeController@activateTheme')->name('activateTheme');
 
 
 });
