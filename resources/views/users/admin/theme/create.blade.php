@@ -5,7 +5,7 @@
     .invalid-feedback{
         display: inline;
     }
-    
+
     .dataTables_empty{
         color: red;
         font-weight: bold;
@@ -111,11 +111,17 @@
                <div class="col">
                    <div class="form-group">
                         <label>Interface</label>
-                        <input type="file" accept=".php" name="interface" class="form-control-file border {{ $errors->has('interface') ? ' is-invalid' : '' }}">
+                        <input type="file" accept=".blade.php" name="interface" class="form-control-file border {{ $errors->has('interface') ? ' is-invalid' : '' }}">
 
                         @if ($errors->has('interface'))
                         <span class="invalid-feedback" role="alert">
                              <strong>{{ $errors->first('interface') }}</strong>
+                        </span>
+                     @endif
+
+                     @if (session('interface'))
+                        <span class="invalid-feedback" role="alert">
+                             <strong>{{ session('interface') }}</strong>
                         </span>
                      @endif
                     </div>

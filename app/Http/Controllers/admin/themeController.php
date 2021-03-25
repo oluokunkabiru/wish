@@ -54,6 +54,17 @@ class themeController extends Controller
         //
         $theme = new Theme();
         // $script = $request->file('script');
+        $file = $request->file('interface');
+        $fileName =  $file->getClientOriginalName();
+        $fileType = explode(".", $fileName);
+        if(count($fileType)!=3){
+            // return "This is not expected interface";
+            return redirect()->back()->with('interface', 'This is not expected interface');
+        }elseif($fileType[1]!="blade" && $fileType[2]!="php"){
+            // return "Interface must be a file with extension .blade.php";
+            return redirect()->back()->with('interface', 'Interface must be a file with extension .blade.php');
+        }else{
+
         $theme->addMediaFromRequest('script')->toMediaCollection('script');
         $theme->addMediaFromRequest('style')->toMediaCollection('style');
         $theme->addMediaFromRequest('preview')->toMediaCollection('preview');
@@ -72,7 +83,7 @@ class themeController extends Controller
             // echo "dirctory <br>";
         }
         return redirect()->route('theme.index')->with('success', "Theme upload successfully");
-
+    }
 
     }
 
