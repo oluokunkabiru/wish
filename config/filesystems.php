@@ -34,6 +34,11 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
+        'template_views' => [
+        'driver' => 'local',
+        'root' => base_path('resources/views/users/admin/'),
+        // resource_path()."/views/users/admin/template/"
+        ],
         'uploads' => [
             'driver' => 'local',
             'root'   => public_path('uploads/media'),

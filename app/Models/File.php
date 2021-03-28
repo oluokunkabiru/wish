@@ -12,9 +12,5 @@ class File extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
-    // use HasMediaTrait
 
-    // public function last(){
-    //     return static::all()->last();
-    // }
 }

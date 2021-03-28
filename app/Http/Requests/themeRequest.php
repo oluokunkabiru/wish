@@ -29,7 +29,7 @@ class themeRequest extends FormRequest
             'category' =>'required',
             'style' =>['required','file', 'mimes:zip'],
             'script' =>['required','file','mimes:zip'],
-            'interface' =>['required', 'file'],
+            'interface' =>['required','file','mimes:zip'],
             'preview' =>['required','image', 'mimes:png,jpg,jpeg'],
             'payment' =>'required|string',
             'price' =>'required_if:payment,paid|numeric',

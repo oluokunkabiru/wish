@@ -110,8 +110,8 @@
                       <div class="row">
                <div class="col">
                    <div class="form-group">
-                        <label>Interface</label>
-                        <input type="file" accept=".blade.php" name="interface" class="form-control-file border {{ $errors->has('interface') ? ' is-invalid' : '' }}">
+                        <label>Layout</label>
+                        <input type="file" accept="zip" name="interface" class="form-control-file border {{ $errors->has('interface') ? ' is-invalid' : '' }}">
 
                         @if ($errors->has('interface'))
                         <span class="invalid-feedback" role="alert">
