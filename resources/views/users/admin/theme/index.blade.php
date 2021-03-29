@@ -322,7 +322,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger text-uppercase">activate</button>
+                    <button type="submit" class="btn btn-danger text-uppercase">Update</button>
                 </div>
                 </form>
             </div>

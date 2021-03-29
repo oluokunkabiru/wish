@@ -164,22 +164,37 @@ class themeController extends Controller
         $themName = $theme->name;
         // return $themName;
         $jsDir = public_path("/themes/" . $themName . "/js/");
+        if (File::isDirectory($jsDir)) {
+            File::deleteDirectory($jsDir);
+            // echo "dirctory <br>";
+        }
         if (!File::isDirectory($jsDir)) {
             File::makeDirectory($jsDir, 0777, true, true);
             // echo "dirctory <br>";
         }
+
         $cssDir = public_path("/themes/" . $themName . "/css/");
+         if (File::isDirectory($cssDir)) {
+            File::deleteDirectory($cssDir);
+            // echo "dirctory <br>";
+        }
         if (!File::isDirectory($cssDir)) {
             File::makeDirectory($cssDir, 0777, true, true);
             // echo "dirctory <br>";
         }
+
         // return $cssDir;
         //  return scandir($jsDir);
         $layoutDir = resource_path("/views/users/admin/template/" . $themName . "/");
+        if (File::isDirectory($layoutDir)) {
+            File::deleteDirectory($layoutDir);
+            // echo "dirctory <br>";
+        }
         if (!File::isDirectory($layoutDir)) {
             File::makeDirectory($layoutDir, 0777, true, true);
             // echo "dirctory <br>";
         }
+
         $zip->openFile(public_path($scriptUrl));
         $zip->extractTo($jsDir);
         $jsExtract = scandir($jsDir)[2];
@@ -187,6 +202,7 @@ class themeController extends Controller
             File::copyDirectory($jsDir . $jsExtract, $jsDir);
             File::deleteDirectory($jsDir . $jsExtract);
         }
+
         $zip->openFile(public_path($styleUrl));
 
         $zip->extractTo($cssDir);
