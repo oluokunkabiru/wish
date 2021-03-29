@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use PhpZip\ZipFile;
-use ZanySoft\Zip\Zip;
 
 class themeController extends Controller
 {
@@ -31,7 +30,8 @@ class themeController extends Controller
         return view('users.admin.theme.index', compact(['themies', 'categories']));
     }
 
-    public function themePreview(){
+    public function themePreview()
+    {
         $themies = Theme::with(['user', 'category', 'media'])->orderBy('id', 'desc')->get();
         // return $themies;
         return view('users.admin.theme.view', compact(['themies']));
@@ -46,8 +46,7 @@ class themeController extends Controller
         //
         $categories = Category::orderby('id', 'desc')->get();
 
-                return view('users.admin.theme.create', compact(['categories']));
-
+        return view('users.admin.theme.create', compact(['categories']));
     }
 
     /**
@@ -79,22 +78,22 @@ class themeController extends Controller
         $theme->addMediaFromRequest('script')->usingFileName("js.zip")->usingName("js")->toMediaCollection('script');
         $theme->addMediaFromRequest('style')->usingFileName("css.zip")->usingName("css")->toMediaCollection('style');
         $theme->addMediaFromRequest('preview')->toMediaCollection('preview');
-        $theme->addMediaFromRequest('interface')->usingFileName(str_replace(" ", "_", $request->name).".zip")->usingName(str_replace(" ", "_", $request->name))->toMediaCollection('interface');
+        $theme->addMediaFromRequest('interface')->usingFileName(str_replace(" ", "_", $request->name) . ".zip")->usingName(str_replace(" ", "_", $request->name))->toMediaCollection('interface');
         $theme->name = str_replace(" ", "_", $request->name);
         $theme->category_id = $request->category;
         $theme->status = $request->payment;
         $theme->price = $request->price;
         $theme->description = $request->description;
         $theme->user_id = Auth::user()->id;
-        $theme->active = "disable";
+        $theme->active = "disabled";
         $theme->save();
-         $dir = public_path("/themes/".$theme->name."/");
-        if(! File::isDirectory($dir)){
+        $dir = public_path("/themes/" . $theme->name . "/");
+        if (!File::isDirectory($dir)) {
             File::makeDirectory($dir, 0777, true, true);
             // echo "dirctory <br>";
         }
         return redirect()->route('theme.index')->with('success', "Theme upload successfully");
-    // }
+        // }
 
     }
 
@@ -132,104 +131,112 @@ class themeController extends Controller
     {
         //
         $theme = Theme::where('id', $id)->firstOrFail();
-        $oldDir = public_path("/themes/".$theme->name."/");
-        $oldLayout = resource_path("/views/users/admin/template/".$theme->name."/");
+        $oldDir = public_path("/themes/" . $theme->name . "/");
+        $oldLayout = resource_path("/views/users/admin/template/" . $theme->name . "/");
         $theme->name = str_replace(" ", "_", $request->name);
         $theme->price = $request->price;
         $theme->category_id = $request->category;
         $theme->description = $request->description;
         $theme->status = $request->payment;
-        $newDir = public_path("/themes/".$theme->name."/");
-        $newLayout = resource_path("/views/users/admin/template/".$theme->name."/");
+        $newDir = public_path("/themes/" . $theme->name . "/");
+        $newLayout = resource_path("/views/users/admin/template/" . $theme->name . "/");
         rename($oldDir, $newDir);
         rename($oldLayout, $newLayout);
 
         // return $request->all();
         $theme->update();
 
-        return redirect()->back()->with('success', $theme->name." updated successfully");
-
+        return redirect()->back()->with('success', $theme->name . " updated successfully");
     }
-public function activateTheme(Request $request){
-    $id = $request->id;
-    $theme = Theme::find($id);
-    // return $theme;
-    $scriptUrl = $theme->getMedia('script')->first()->getUrl();
-    // return $scriptUrl;
-    $styleUrl = $theme->getMedia('style')->first()->getUrl();
-    $interfaceUrl = $theme->getMedia('interface')->first()->getUrl();
-    $previewUrl = $theme->getMedia('preview')->first()->getFullUrl();
-    $zip = new ZipFile; //Zip::open($scriptUrl);
+    public function activateTheme(Request $request)
+    {
+        $id = $request->id;
+        $theme = Theme::find($id);
+        // return $theme;
+        $scriptUrl = $theme->getMedia('script')->first()->getUrl();
+        // return $scriptUrl;
+        $styleUrl = $theme->getMedia('style')->first()->getUrl();
+        $interfaceUrl = $theme->getMedia('interface')->first()->getUrl();
+        $previewUrl = $theme->getMedia('preview')->first()->getFullUrl();
+        $zip = new ZipFile; //Zip::open($scriptUrl);
 
-    // $scpriptZip->openFile(public_path($scriptUrl));
-    $themName = $theme->name;
-    // return $themName;
-    $jsDir = public_path("/themes/".$themName."/js/");
-        if(! File::isDirectory($jsDir)){
+        // $scpriptZip->openFile(public_path($scriptUrl));
+        $themName = $theme->name;
+        // return $themName;
+        $jsDir = public_path("/themes/" . $themName . "/js/");
+        if (!File::isDirectory($jsDir)) {
             File::makeDirectory($jsDir, 0777, true, true);
             // echo "dirctory <br>";
         }
-     $cssDir = public_path("/themes/".$themName."/css/");
-    if(! File::isDirectory($cssDir)){
+        $cssDir = public_path("/themes/" . $themName . "/css/");
+        if (!File::isDirectory($cssDir)) {
             File::makeDirectory($cssDir, 0777, true, true);
             // echo "dirctory <br>";
         }
         // return $cssDir;
         //  return scandir($jsDir);
-        $layoutDir = resource_path("/views/users/admin/template/".$themName."/");
-    if(! File::isDirectory($layoutDir)){
+        $layoutDir = resource_path("/views/users/admin/template/" . $themName . "/");
+        if (!File::isDirectory($layoutDir)) {
             File::makeDirectory($layoutDir, 0777, true, true);
             // echo "dirctory <br>";
         }
-    $zip->openFile(public_path($scriptUrl));
-    $zip->extractTo($jsDir);
-    $jsExtract = scandir($jsDir)[2];
-        if(File::isDirectory($jsDir.$jsExtract)){
-        File::copyDirectory($jsDir.$jsExtract, $jsDir);
-        File::deleteDirectory($jsDir.$jsExtract);
+        $zip->openFile(public_path($scriptUrl));
+        $zip->extractTo($jsDir);
+        $jsExtract = scandir($jsDir)[2];
+        if (File::isDirectory($jsDir . $jsExtract)) {
+            File::copyDirectory($jsDir . $jsExtract, $jsDir);
+            File::deleteDirectory($jsDir . $jsExtract);
         }
-    $zip->openFile(public_path($styleUrl));
+        $zip->openFile(public_path($styleUrl));
 
-    $zip->extractTo($cssDir);
-    $cssExtract = scandir($cssDir)[2];
-        if(File::isDirectory($cssDir.$cssExtract)){
-        File::copyDirectory($cssDir.$cssExtract, $cssDir);
-        File::deleteDirectory($cssDir.$cssExtract);
+        $zip->extractTo($cssDir);
+        $cssExtract = scandir($cssDir)[2];
+        if (File::isDirectory($cssDir . $cssExtract)) {
+            File::copyDirectory($cssDir . $cssExtract, $cssDir);
+            File::deleteDirectory($cssDir . $cssExtract);
         }
-    $zip->openFile(public_path($interfaceUrl));
-    $zip->extractTo($layoutDir);
-    $layoutExtract = scandir($layoutDir)[2];
-        if(File::isDirectory($layoutDir.$layoutExtract)){
-        File::copyDirectory($layoutDir.$layoutExtract, $layoutDir);
-        File::deleteDirectory($layoutDir.$layoutExtract);
+        $zip->openFile(public_path($interfaceUrl));
+        $zip->extractTo($layoutDir);
+        $layoutExtract = scandir($layoutDir)[2];
+        if (File::isDirectory($layoutDir . $layoutExtract)) {
+            File::copyDirectory($layoutDir . $layoutExtract, $layoutDir);
+            File::deleteDirectory($layoutDir . $layoutExtract);
         }
 
         $theme->active = "enabled";
         $theme->update();
-    return redirect()->back()->with('success', $themName." activated successfullt");
-
-
-}
+        return redirect()->back()->with('success', $themName . " activated successfullt");
+    }
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function themeDisable($id)
+    {
+        $theme = Theme::find($id);
+        $theme->active = "disabled";
+        $theme->update();
+        return redirect()->back()->with('success', $theme->name . " deactivated successfullt");
+
+
+    }
     public function destroy($id)
     {
         //
         $theme = Theme::find($id);
         // return $file;
-        $dir = public_path("/themes/".$theme->name."/");
-        $layoutDir = resource_path("/views/users/admin/template/".$theme->name);
+        $dir = public_path("/themes/" . $theme->name . "/");
+        $layoutDir = resource_path("/views/users/admin/template/" . $theme->name);
 
-    if(File::isDirectory($dir)){
-        File::deleteDirectory($dir);
-    }
-     if(File::isDirectory($layoutDir)){
-        File::deleteDirectory($layoutDir);
-    }
+        if (File::isDirectory($dir)) {
+            File::deleteDirectory($dir);
+        }
+        if (File::isDirectory($layoutDir)) {
+            File::deleteDirectory($layoutDir);
+        }
         $theme->delete($id);
         $theme->clearMediaCollection();
         return redirect()->back()->with('success', 'File deleted successfully');

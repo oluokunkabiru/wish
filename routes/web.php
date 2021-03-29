@@ -57,6 +57,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('category', 'admin\categoryController');
     Route::resource('theme', 'admin\themeController');
     Route::post('activateTheme', 'admin\themeController@activateTheme')->name('activateTheme');
+    Route::get('/deactivate-theme/{id}', 'admin\themeController@themeDisable')->name("themeDisable");
     Route::resource('template', 'admin\templateController');
     Route::get('theme-view', 'admin\themeController@themePreview')->name('themePreview');
 
