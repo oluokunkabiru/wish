@@ -106,6 +106,9 @@ class themeController extends Controller
     public function show($id)
     {
         //
+        $theme = Theme::find($id);
+        // return $theme;
+        return view('users.admin.template.'.$theme->name.".index", compact(['theme']));
     }
 
     /**
