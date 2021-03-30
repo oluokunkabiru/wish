@@ -111,6 +111,10 @@ class themeController extends Controller
         return view('users.admin.template.'.$theme->name.".index", compact(['theme']));
     }
 
+    public function presetup($id){
+        return $id;
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

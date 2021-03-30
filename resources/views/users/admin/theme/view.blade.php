@@ -28,8 +28,9 @@
                     @endphp
 
 
-                <a href="{{ route('theme.show', $theme->id) }}" class="text-dark">
                     <div class="">
+                    <a href="{{ route('theme.show', $theme->id) }}" class="text-dark">
+
                             <div class="card profile-widget">
                                 <div class="profile-widget-header">
                                     <img alt="image" src="{{ $image->first()->getFullUrl() }}" class="rounded-circle profile-widget-picture">
@@ -54,11 +55,13 @@
                                 </div>
 
                             </div>
+                            </a>
+                            <a href="{{ route('themePreset', [$theme->id, $theme->name]) }}" class="btn btn-secondary p-2 text-uppercase">Preset the theme</a>
                         </div>
                     {{-- <div class="card">
                         <img class="card-img img-fluid" src="{{ $image->first()->getFullUrl() }}" style="height: 200px" alt="{{ $image->first()->name }}">
                     </div> --}}
-                </a>
+
                 @endforeach
             @endif
         </div>

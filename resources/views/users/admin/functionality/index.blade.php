@@ -1,5 +1,5 @@
 @extends('users.admin.layout.app')
-@section('title', 'Manage Category')
+@section('title', 'Manage functionality')
 @section('style')
 <style>
     .dataTables_empty{
@@ -12,7 +12,7 @@
 @section('content')
  <section class="section">
     <div class="section-header">
-        <h1>Manage Category</h1>
+        <h1>Manage Functionality</h1>
     </div>
 
                     <div class="row">
@@ -37,7 +37,7 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                <a href="#addcategory" class="btn btn-success text-uppercase" data-toggle="modal">Add category</a>
+                                <a href="#addfunctionality" class="btn btn-success text-uppercase" data-toggle="modal">Add functionality</a>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -47,7 +47,7 @@
                                                 <th class="text-center">
                                                     ID
                                                 </th>
-                                                <th>Category</th>
+                                                <th>functionality</th>
                                                 <th>Create</th>
                                                 <th>Action</th>
 
@@ -57,16 +57,16 @@
                                                 @php
                                                     $i = 0;
                                                 @endphp
-                                                @if ($categories)
-                                                    @foreach ($categories as $category)
+                                                @if ($functions)
+                                                    @foreach ($functions as $functionality)
                                                         <tr>
                                                             <td>{{ ++$i }}</td>
-                                                            <td>{{ ucwords($category->name) }}</td>
-                                                            <td>{{ $category->created_at }}</td>
+                                                            <td>{{ ucwords($functionality->name) }}</td>
+                                                            <td>{{ $functionality->created_at }}</td>
                                                             <td>
                                                                 <div class="row">
-                                                                   <a href="#editCategory" data-toggle="modal" myurl="{{ route('category.update', $category->id)  }}" mycategory={{ ucwords($category->name) }} class="badge badge-pill badge-warning mx-1"><span class="fa fa-edit p-1 text-white"></span></a>
-                                                                    <a href="#deleteCategory"  data-toggle="modal" delurl="{{ route('category.destroy', $category->id)  }}" delcategory={{ ucwords($category->name) }}  class="badge badge-pill badge-danger mx-1"><span class="fa fa-trash p-1 text-white"></span></a>
+                                                                   <a href="#editfunctionality" data-toggle="modal" myurl="{{ route('functionality.update', $functionality->id)  }}" myfunctionality={{ ucwords($functionality->name) }} class="badge badge-pill badge-warning mx-1"><span class="fa fa-edit p-1 text-white"></span></a>
+                                                                    <a href="#deletefunctionality"  data-toggle="modal" delurl="{{ route('functionality.destroy', $functionality->id)  }}" delfunctionality={{ ucwords($functionality->name) }}  class="badge badge-pill badge-danger mx-1"><span class="fa fa-trash p-1 text-white"></span></a>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -85,29 +85,29 @@
 
                 </div>
 
-            <div class="modal" id="addcategory">
+            <div class="modal" id="addfunctionality">
             <div class="modal-dialog">
                 <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title text-uppercase">Add new category</h4>
+                    <h4 class="modal-title text-uppercase">Add new functionality</h4>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form id="newcategory" action="{{ route('category.store') }}" method="POST">
+                    <form id="newfunctionality" action="{{ route('functionality.store') }}" method="POST">
                         <div class="form-group">
-                            <label for="email">Category name:</label>
-                            <input type="text" class="form-control" name="category" id="category">
+                            <label for="email">functionality name:</label>
+                            <input type="text" class="form-control" name="functionality" id="functionality">
                         </div>
                             {{ csrf_field() }}
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                            <button id="addcategorybtn" type="submit" class="btn btn-primary text-uppercase">Add</button>                </div>
+                            <button id="addfunctionalitybtn" type="submit" class="btn btn-primary text-uppercase">add</button>                </div>
 </form>
                 </div>
             </div>
@@ -115,7 +115,7 @@
 
 
 
-            <div class="modal" id="editCategory">
+            <div class="modal" id="editfunctionality">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -127,10 +127,10 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form id="editcategoryform" action="#" method="POST">
+                    <form id="editfunctionalityform" action="{{ route('functionality.store') }}" method="POST">
                         <div class="form-group">
-                            <label for="email">Category name:</label>
-                            <input type="text" class="form-control" name="category" id="categoryValue">
+                            <label for="email">functionality name:</label>
+                            <input type="text" class="form-control" name="functionality" id="functionalityValue">
                         </div>
 
                             {{ csrf_field() }}
@@ -139,13 +139,13 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                            <button id="addcategorybtn" type="submit" class="btn btn-primary text-uppercase">update</button>                </div>
+                            <button id="addfunctionalitybtn" type="submit" class="btn btn-primary text-uppercase">update</button>                </div>
         </form>
                 </div>
             </div>
             </div>
 
-             <div class="modal" id="deleteCategory">
+             <div class="modal" id="deletefunctionality">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -157,7 +157,7 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <form id="delcategoryform" action="#" method="POST">
+                    <form id="delfunctionalityform" action="#" method="POST">
 
                             {{ csrf_field() }}
                             @method("DELETE")
@@ -181,21 +181,21 @@
     { "sortable": false, "targets": [2,3] }
   ]
 });
- $('#editCategory').on('show.bs.modal', function(e){
-          var mycat = $(e.relatedTarget).attr('mycategory');
+ $('#editfunctionality').on('show.bs.modal', function(e){
+          var mycat = $(e.relatedTarget).attr('myfunctionality');
           var url = $(e.relatedTarget).attr('myurl');
         $("#catname").text(mycat);
-          $("#editcategoryform").attr("action", url);
+          $("#editfunctionalityform").attr("action", url);
 
-     $("#categoryValue").val(mycat);
+     $("#functionalityValue").val(mycat);
      })
 
 
-$('#deleteCategory').on('show.bs.modal', function(e){
-          var mycat = $(e.relatedTarget).attr('delcategory');
+$('#deletefunctionality').on('show.bs.modal', function(e){
+          var mycat = $(e.relatedTarget).attr('delfunctionality');
           var url = $(e.relatedTarget).attr('delurl');
         $("#delname").text(mycat);
-          $("#delcategoryform").attr("action", url);
+          $("#delfunctionalityform").attr("action", url);
 
      })
 

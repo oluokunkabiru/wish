@@ -85,6 +85,7 @@
                     <li><a class="nav-link" href="{{ route('category.index') }}">Manage Category</a></li>
                 </ul>
             </li>
+
             {{-- <li class="menu-header">Article</li>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Typewriter</span></a>
@@ -108,6 +109,7 @@
                     <li><a href="{{ route('theme.create') }}">Add New Theme</a></li>
                     <li><a href="{{ route('theme.index') }}">Manage Theme</a></li>
                     <li><a href="{{ route('themePreview') }}">View Theme</a></li>
+                    <li><a href="{{ route('functionality.index') }}">Theme Functionality</a></li>
                 </ul>
             </li>
 
