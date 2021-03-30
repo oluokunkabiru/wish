@@ -21,4 +21,8 @@ class Theme extends Model implements HasMedia
     {
         return $this->belongsTo('App\Models\Category');
     }
+    // public function presetup()
+    // {
+    //     return $this->belongsTo('App\Models\Templatesetup');
+    // }
 }

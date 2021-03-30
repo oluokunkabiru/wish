@@ -24,7 +24,6 @@
                                  <div class="card-body">
                                     <div class="form-group">
                                         @foreach ($functions as $function)
-
                                         <label class="custom-switch mt-2 d-block">
                                         <input type="checkbox" onclick="ok(this.id)" id="{{ route('addFunctionalityToThemeSetup', $function->id) }}" name="function" class="custom-switch-input">
                                         <span class="custom-switch-indicator"></span>
