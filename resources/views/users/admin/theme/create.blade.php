@@ -111,7 +111,7 @@
                <div class="col">
                    <div class="form-group">
                         <label>Layout</label>
-                        <input type="file" accept="zip" name="interface" class="form-control-file border {{ $errors->has('interface') ? ' is-invalid' : '' }}">
+                        <input type="file" accept=".zip" name="interface" class="form-control-file border {{ $errors->has('interface') ? ' is-invalid' : '' }}">
 
                         @if ($errors->has('interface'))
                         <span class="invalid-feedback" role="alert">
