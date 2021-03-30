@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\themeRequest;
 use App\Http\Requests\themeUpdateRequest;
 use App\Models\Category;
+use App\Models\Functionality;
 use App\Models\Theme;
+use App\Models\Templatesetup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use PhpZip\ZipFile;
+use SebastianBergmann\Template\Template;
 
 class themeController extends Controller
 {
@@ -59,22 +61,6 @@ class themeController extends Controller
     {
         //
         $theme = new Theme();
-        // $script = $request->file('script');
-        // $file = $request->file('interface');
-        // $fileName =  $file->getClientOriginalName();
-        // $fileType = explode(".", $fileName);
-        // if(count($fileType)!=3){
-        //     // return "This is not expected interface";
-        //     return redirect()->back()->with('interface', 'This is not expected interface');
-        // }elseif($fileType[1]!="blade" || $fileType[2]!="php"){
-        //     // return "Interface must be a file with extension .blade.php";
-        //     return redirect()->back()->with('interface', 'Interface must be a file with extension .blade.php');
-        // }else{
-        // //     return $fileType[1];
-        // // }
-        // $extension = ".blade.php";
-        // $blade = strtolower(str_replace(" ", "_", $request->name).$extension);
-        // $file->storeAs('template', $blade, 'template_views');
         $theme->addMediaFromRequest('script')->usingFileName("js.zip")->usingName("js")->toMediaCollection('script');
         $theme->addMediaFromRequest('style')->usingFileName("css.zip")->usingName("css")->toMediaCollection('style');
         $theme->addMediaFromRequest('preview')->toMediaCollection('preview');
@@ -92,6 +78,10 @@ class themeController extends Controller
             File::makeDirectory($dir, 0777, true, true);
             // echo "dirctory <br>";
         }
+        $template = new Templatesetup();
+        $template->theme_id = $theme->id;
+        $template->user_id = Auth::user()->id;
+        $template->save();
         return redirect()->route('theme.index')->with('success', "Theme upload successfully");
         // }
 
@@ -112,7 +102,16 @@ class themeController extends Controller
     }
 
     public function presetup($id){
-        return $id;
+        $functions = Functionality::get();
+        return view('users.admin.theme.presetup', compact(['functions']));
+    }
+    public function addFunction($id){
+        $template = Templatesetup::where('theme_id', $id)->first();
+        return dd($template);
+        // return $template->id ? $template->id:"no them";
+        $template = new Templatesetup();
+
+
     }
 
     /**
@@ -228,6 +227,7 @@ class themeController extends Controller
 
         $theme->active = "enabled";
         $theme->update();
+
         return redirect()->back()->with('success', $themName . " activated successfullt");
     }
     /**
