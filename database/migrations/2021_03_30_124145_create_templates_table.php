@@ -16,13 +16,13 @@ class CreateTemplatesTable extends Migration
         Schema::create('templates', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('category')->nullable();
-            $table->text('image')->nullable();
-            $table->text('music')->nullable();
-            $table->text('video')->nullable();
+            $table->json('category')->nullable();
+            $table->json('image')->nullable();
+            $table->json('music')->nullable();
+            $table->json('video')->nullable();
             $table->integer('theme_id');
-            $table->text('content')->nullable();
-            $table->text('user_id');
+            $table->json('content')->nullable();
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

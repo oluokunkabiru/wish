@@ -103,13 +103,30 @@ class themeController extends Controller
 
     public function presetup($id){
         $functions = Functionality::get();
-        return view('users.admin.theme.presetup', compact(['functions']));
-    }
-    public function addFunction($id){
+        $theme = Theme::find($id);
         $template = Templatesetup::where('theme_id', $id)->first();
-        return dd($template);
-        // return $template->id ? $template->id:"no them";
-        $template = new Templatesetup();
+        $availablefunction = json_decode($template->functionality, true);
+        return view('users.admin.theme.presetup', compact(['functions', 'theme', 'availablefunction' ]));
+    }
+    public function addFunction($functionid, $themename, $themeid, $functionname){
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        $previousFunction = json_decode($template->functionality, true);
+        if(array_key_exists($functionid, $previousFunction)){
+            unset($previousFunction[$functionid]);
+            $message  = "$functionname removed successfully";
+             $vb = json_encode($previousFunction);
+        $template->functionality = $vb;
+        $template->update();
+        return redirect()->back()->with('unsuccess', $message);
+
+        }else{
+        $previousFunction[$functionid] =$functionname;
+            $message  = "$functionname added successfully";
+            $vb = json_encode($previousFunction);
+        $template->functionality = $vb;
+        $template->update();
+        return redirect()->back()->with('success', $message);
+        }
 
 
     }
@@ -261,7 +278,8 @@ class themeController extends Controller
             File::deleteDirectory($layoutDir);
         }
         $theme->delete($id);
-        $theme->clearMediaCollection();
+
+       $theme->clearMediaCollection();
         return redirect()->back()->with('success', 'File deleted successfully');
     }
 }

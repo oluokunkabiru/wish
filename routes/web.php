@@ -57,11 +57,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('category', 'admin\categoryController');
     Route::resource('theme', 'admin\themeController');
     Route::resource('functionality', 'admin\FunctionalityController');
-    Route::get('/add-category/{id}', 'admin\themeController@addFunction')->name('addFunctionalityToThemeSetup');
+    Route::get('/add-functionality/{functionid}/{themename}/{themeid}/{functionname}', 'admin\themeController@addFunction')->name('addFunctionalityToThemeSetup');
 
     Route::post('activateTheme', 'admin\themeController@activateTheme')->name('activateTheme');
     Route::get('/deactivate-theme/{id}', 'admin\themeController@themeDisable')->name("themeDisable");
-    Route::get("/setup/{id}/oka/{themename}", 'admin\themeController@presetup')->name('themePreset');
+    Route::get("/setup/{id}/{themename}", 'admin\themeController@presetup')->name('themePreset');
     Route::resource('template', 'admin\templateController');
     Route::get('theme-view', 'admin\themeController@themePreview')->name('themePreview');
 
