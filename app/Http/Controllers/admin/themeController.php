@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CarouselRequest;
 use App\Http\Requests\themeRequest;
 use App\Http\Requests\themeUpdateRequest;
 use App\Models\Category;
 use App\Models\Functionality;
 use App\Models\Theme;
+use App\Models\File;
 use App\Models\Templatesetup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use PhpZip\ZipFile;
 use SebastianBergmann\Template\Template;
 
@@ -106,8 +107,13 @@ class themeController extends Controller
         $theme = Theme::find($id);
         $template = Templatesetup::where('theme_id', $id)->first();
         $availablefunction = json_decode($template->functionality, true);
-        return view('users.admin.theme.presetup', compact(['functions', 'theme', 'availablefunction' ]));
+        $content = json_decode($template->content);
+        // return dd($content);
+        // print_r(json_decode($content['caption']));
+        $medias = File::with('media')->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+        return view('users.admin.theme.presetup', compact(['functions','content', 'theme', 'medias', 'availablefunction' ]));
     }
+
     public function addFunction($functionid, $themename, $themeid, $functionname){
         $template = Templatesetup::where('theme_id', $themeid)->first();
         $previousFunction = json_decode($template->functionality, true);
@@ -129,6 +135,40 @@ class themeController extends Controller
         }
 
 
+    }
+
+
+    public function addCarousel(CarouselRequest $request){
+
+        function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+        }
+
+        $caption = [];
+        $themeid = $request->themeid;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+
+        $caption['image']=$request->image;
+        $caption['caption'] = $request->caption;
+        $caption['description'] = test_input($request->description);
+
+        $previousContent = json_decode($template->content, true);
+
+        if(isset($previousContent['carousel'])){
+            $totalCaption = count($previousContent['carousel']);
+            $nextCaption = $totalCaption+1;
+            $previousContent['carousel'][$nextCaption] = $caption;
+        }else{
+            $totalCaption = 0;
+            $previousContent['carousel'][$totalCaption] =$caption;
+        }
+            $vb = json_encode($previousContent);
+            $template->content = $vb;
+            $template->update();
+        return redirect()->back()->with('success', 'Carousel added successfully');
     }
 
     /**
@@ -277,7 +317,8 @@ class themeController extends Controller
         if (File::isDirectory($layoutDir)) {
             File::deleteDirectory($layoutDir);
         }
-        $theme->delete($id);
+
+       $theme->delete($id);
 
        $theme->clearMediaCollection();
         return redirect()->back()->with('success', 'File deleted successfully');

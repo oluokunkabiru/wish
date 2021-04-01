@@ -20,7 +20,7 @@ class adminMedia extends Controller
     public function index()
     {
         //
-        $medias = File::with('media')->where('user_id', Auth::user()->id)->get();
+        $medias = File::with('media')->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
 
         // $medias = File::getMedia('image');
         // return $medias;

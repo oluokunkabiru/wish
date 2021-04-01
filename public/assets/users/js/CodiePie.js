@@ -13,6 +13,7 @@
       footerClass: '',
       body: '',
       buttons: [],
+      modalId:  'vboy',
       autoFocus: true,
       created: function() {},
       appended: function() {},
@@ -22,8 +23,9 @@
 
     this.each(function() {
       i++;
-      var id = 'fire-modal-' + i,
-        trigger_class = 'trigger--' + id,
+        var id = options.modalId,
+            // trigger +
+        trigger_class = id,
         trigger_button = $('.' + trigger_class);
 
       $(this).addClass(trigger_class);
