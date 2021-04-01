@@ -124,8 +124,8 @@
                                                                         <a href="#updateCarousel" imgUrl="{{ $item->image }}" carouselId="{{ $key }}" caption="{{ $item->caption }}" desc="{!! $item->description !!}" data-toggle="modal"
                                                                             class="btn btn-sm btn-warning col m-1"> <span
                                                                                 class="fa fa-edit"></span> </a>
-                                                                        <a href="#deleteCarousel" data-toggle="modal"
-                                                                            class="btn btn-sm btn-danger col m-1"> <span
+                                                                        <a href="#deleteCarousel" carouselDeleteUrl="{{ route('admindeleteCarouselSetup', [$theme->id, $key]) }}" data-toggle="modal"
+                                                                           carouselDeleteImgUrl="{{ $item->image }}" class="btn btn-sm btn-danger col m-1"> <span
                                                                                 class="fa fa-trash"></span> </a>
                                                                     </div>
                                                                 </td>
@@ -252,15 +252,15 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Modal Header</h4>
+                        <h4 class="modal-title text-uppercase text-danger">confirm delete</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Some text in the modal. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis
-                            ducimus praesentium debitis tempora, cum minus reprehenderit soluta mollitia. Temporibus
-                            inventore cupiditate eum eveniet dolorum animi id vel ad praesentium veritatis!</p>
+                        <img src="" id="carouselDeleteImgage" style="width: 200px" class="card-img rounded" alt="">
+
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <a href="" id="deleteCarouselLink" class="btn btn-danger text-uppercase mx-3">delete carousel</a>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
                     </div>
                 </div>
 
@@ -373,8 +373,10 @@ function updateCarouselImage(image) {
 
 
          $('#deleteCarousel').on('show.bs.modal', function(e) {
-
-
+             var carouselDelete = $(e.relatedTarget).attr('carouselDeleteUrl');
+                var deleteImage = $(e.relatedTarget).attr('carouselDeleteImgUrl');
+                $("#carouselDeleteImgage").attr('src', deleteImage);
+                $("#deleteCarouselLink").attr('href', carouselDelete);
         })
 
     </script>

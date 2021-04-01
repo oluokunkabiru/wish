@@ -191,9 +191,7 @@ class themeController extends Controller
         $caption['description'] = testin($request->description);
 
         $previousContent = json_decode($template->content, true);
-        echo "index = $carouselId<br>";
-        // print_r ($previousContent['carousel'][$carouselId]);
-        // return print_r($previousContent['carousel']);
+
         if(array_key_exists($carouselId, $previousContent['carousel'])){
             $previousContent['carousel'][$carouselId] = $caption;
         }else{
@@ -204,6 +202,20 @@ class themeController extends Controller
         $template->content = $vb;
         $template->update();
         return redirect()->back()->with('success', 'Carousel updated successfully');
+
+
+    }
+    public function deleteCarousel($themeid, $carouselId){
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        $previousContent = json_decode($template->content, true);
+
+        if (array_key_exists($carouselId, $previousContent['carousel'])) {
+            unset($previousContent['carousel'][$carouselId]) ;
+        }
+        $vb = json_encode($previousContent);
+        $template->content = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Carousel deleted successfully');
 
 
     }

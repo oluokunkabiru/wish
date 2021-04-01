@@ -60,6 +60,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/add-functionality/{functionid}/{themename}/{themeid}/{functionname}', 'admin\themeController@addFunction')->name('addFunctionalityToThemeSetup');
     Route::post('adminCarouselSetupt', 'admin\themeController@addCarousel')->name('templateAddCarouselSetup');
     Route::patch('adminCarouselSetupUpdate', 'admin\themeController@updateCarousel')->name("templateUpdateCarouselSetup");
+    Route::get('adminDeleteCarouseSetup/{theme}/{carouselid}', 'admin\themeController@deleteCarousel')->name('admindeleteCarouselSetup');
     Route::post('activateTheme', 'admin\themeController@activateTheme')->name('activateTheme');
     Route::get('/deactivate-theme/{id}', 'admin\themeController@themeDisable')->name("themeDisable");
     Route::get("/setup/{id}/{themename}", 'admin\themeController@presetup')->name('themePreset');
