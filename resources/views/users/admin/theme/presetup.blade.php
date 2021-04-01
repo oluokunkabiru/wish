@@ -92,6 +92,7 @@
                                             @if ($content)
                                                 @php
                                                     $carousel = $content->carousel;
+
                                                 @endphp
                                                 <table class="table table-striped table-condensed table-sm">
                                                     <thead>
@@ -107,18 +108,20 @@
                                                             $carous = 1;
                                                         @endphp
 
-                                                        @foreach ($carousel as $item)
+                                                        @foreach ($carousel as $key => $item )
+
 
                                                             <tr>
                                                                 <td>{{ $carous++ }}</td>
                                                                 <td><img src="{{ $item->image }}"
                                                                         class="card-img rounded-circle" style="width: 30px"
                                                                         alt="{{ $item->caption }}"></td>
+
                                                                 <td>{{ isset($item->caption) ? $item->caption : 'No caption' }}
                                                                 </td>
                                                                 <td>
                                                                     <div class="row">
-                                                                        <a href="#updateCarousel" imgUrl="{{ $item->image }}" caption="{{ $item->caption }}" desc="{!! $item->description !!}" data-toggle="modal"
+                                                                        <a href="#updateCarousel" imgUrl="{{ $item->image }}" carouselId="{{ $key }}" caption="{{ $item->caption }}" desc="{!! $item->description !!}" data-toggle="modal"
                                                                             class="btn btn-sm btn-warning col m-1"> <span
                                                                                 class="fa fa-edit"></span> </a>
                                                                         <a href="#deleteCarousel" data-toggle="modal"
@@ -138,7 +141,7 @@
                                                         class="fa fa-upload"></span> add image from media</a></button>
                                                 <img src="#" class="card-img m-2" style="width: 200px"
                                                     id="carouselImgPreview" alt="">
-                                                <form action="{{ route('addCarouselSetup') }}" method="post">
+                                                <form action="{{ route('templateAddCarouselSetup') }}" method="post">
                                                     @csrf
                                                     <div class="card-body">
                                                         <div class="form-group">
@@ -147,8 +150,7 @@
                                                         </div>
                                                         <input type="hidden" name="image" value="{{ old('carousel') }}"
                                                             id="carouselImg">
-                                                        <input type="hidden" name="themeid" value="{{ $theme->id }}"
-                                                            id="carouselImg">
+                                                        <input type="hidden" name="themeid" value="{{ $theme->id }}">
 
                                                         {{-- <div class="form-group row mb-4"> --}}
                                                         <label class="">Description</label>
@@ -190,45 +192,50 @@
 
     </section>
 
-        <div id="updateCarousel" class="modal fade" role="dialog">
+        <div id="updateCarousel" class="modal">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title text-uppercase">edit <span id="carouselUpdateCaption"></span></h4>
-                    </div>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>                    </div>
                     <div class="modal-body">
                         <div class="card">
                             <button class="btn btn-success text-uppercase" id="updateimage"><span
                                                         class="fa fa-upload"></span> add image from media</a></button>
                                                 <img src="#" class="card-img m-2" style="width: 200px"
                                                     id="carouselPreviousImgPreview" alt="">
-                             <form action="{{ route('addCarouselSetup') }}" method="post">
+                             <form action="{{ route('templateUpdateCarouselSetup') }}" method="post">
                                                     @csrf
+                                                    @method("PATCH")
                                                     <div class="card-body">
                                                         <div class="form-group">
                                                             <label>Caption</label>
                                                             <input type="text" id="previousCaption" name="caption" class="form-control">
                                                         </div>
                                                         <input type="hidden" name="image" value="{{ old('carousel') }}"
-                                                            id="carouselImg">
-                                                        <input type="hidden"  name="themeid" value="{{ $theme->id }}"
                                                             id="previousCarouselImg">
+                                                        <input type="hidden"  name="themeid" value="{{ $theme->id }}">
+                                                        <input type="hidden" id="carouselId" name="carouselId" value="#">
 
                                                         {{-- <div class="form-group row mb-4"> --}}
                                                         <label class="">Description</label>
                                                         <div class="form-group">
-                                                            <textarea class="summernote-simple" id="desc" name="description"
-                                                                placeholder="Description"></textarea>
+                                                            <textarea id="carouselValue" class="updateCarouselSummernote" name="description"
+                                                                placeholder="Description">
+
+                                                            </textarea>
                                                         </div>
                                                         {{-- </div> --}}
 
-                                                    </div>
-                                                    <div class="card-footer text-right">
-                                                        <button class="btn btn-primary mr-1" type="submit">Submit</button>
+<div class="card-foot text-right">
+                                                        <button class="btn btn-primary text-uppercase mr-1" type="submit">Update</button>
                                                         <button class="btn btn-secondary" type="reset">Reset</button>
+
                                                     </div>
+                                                    </div>
+
                                                 </form>
                         </div>
                     </div>
@@ -239,7 +246,7 @@
 
 
 
-         <div id="deleteCarousel" class="modal" arria-hidden="">
+         <div id="deleteCarousel" class="modal" >
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -310,9 +317,9 @@ function addCarouselImage(image) {
             $("#addimages").modal("hide");
         }
 function updateCarouselImage(image) {
-            $("#carouselImgPreview").attr("src", image);
-            $("#carouselImg").attr("value", image);
-            $("#addimages").modal("hide");
+            $("#carouselPreviousImgPreview").attr("src", image);
+            $("#previousCarouselImg").attr("value", image);
+            $("#updateimages").modal("hide");
         }
 
         $("#addimage").fireModal({
@@ -333,10 +340,7 @@ function updateCarouselImage(image) {
             modalId: 'updateimages',
         });
 
-        // $(".imagecheck-input").on('click', function() {
-        //    var ok = $(".imagecheck-input").val();
-        //    alert(ok);
-        // })
+
 
 
 
@@ -345,21 +349,29 @@ function updateCarouselImage(image) {
                       var img = $(e.relatedTarget).attr('imgUrl');
                       var caption = $(e.relatedTarget).attr('caption');
                       var desc = $(e.relatedTarget).attr('desc');
+                      var carouselId = $(e.relatedTarget).attr('carouselId');
+
                       $("#carouselUpdateCaption").text(caption);
                       $("#carouselPreviousImgPreview").attr('src', img);
                       $("#previousCaption").val(caption);
                       $("#previousCarouselImg").val(img);
-                      $("#desc").val(desc);
-                    //   alert(desc);
-
-
-
-
-
-
-
+                    //   alert(img)
+                      $("#carouselId").val(carouselId);
+                      $("#carouselValue").html(desc);
+                      $(".updateCarouselSummernote").summernote({
+                        dialogsInBody: true,
+                        minHeight: 150,
+                        toolbar: [
+                            ['style', ['bold', 'italic', 'underline', 'clear']],
+                            ['font', ['strikethrough']],
+                            ['para', ['paragraph']]
+                        ]
+                        });
 
         })
+
+
+
          $('#deleteCarousel').on('show.bs.modal', function(e) {
 
 

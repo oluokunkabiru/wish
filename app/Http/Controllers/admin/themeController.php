@@ -171,6 +171,43 @@ class themeController extends Controller
         return redirect()->back()->with('success', 'Carousel added successfully');
     }
 
+    public function updateCarousel(CarouselRequest $request){
+
+        $caption = [];
+        $themeid = $request->themeid;
+        $carouselId = $request->carouselId;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+
+        function testin($data)
+        {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+
+        $caption['image'] = $request->image;
+        $caption['caption'] = $request->caption;
+        $caption['description'] = testin($request->description);
+
+        $previousContent = json_decode($template->content, true);
+        echo "index = $carouselId<br>";
+        // print_r ($previousContent['carousel'][$carouselId]);
+        // return print_r($previousContent['carousel']);
+        if(array_key_exists($carouselId, $previousContent['carousel'])){
+            $previousContent['carousel'][$carouselId] = $caption;
+        }else{
+            $previousContent['carousel'][$carouselId] = $caption;
+
+        }
+        $vb = json_encode($previousContent);
+        $template->content = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Carousel updated successfully');
+
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
