@@ -89,7 +89,7 @@
                                             <h4>Preview</h4>
                                         </div>
                                         <div class="card-body">
-<div id="accordion">
+                                    <div id="accordion">
                                             <div class="accordion-body collapse" id="carousel" data-parent="#accordion">
                                                 @if ($content)
                                                     @php
@@ -346,7 +346,54 @@
 
 
                                             </div>
-                                        </div>
+
+                                    <div class="accordion-body collapse" id="music_after"
+                                                data-parent="#accordion">
+                                                {{-- @if ($music) --}}
+                                                    @if (!empty($music['musicafter']) )
+
+                                                                                 <audio controls>
+                                                                                    <source src="{{ $music['musicafter'] }}" type="audio/mpeg">
+                                                                                    Your browser does not support the audio element.
+                                                                                    </audio>
+                                                                            {{-- </td>
+                                                                            <td> --}}
+                                                                                <div class="row">
+                                                                            <button id="updateMusicAfter"
+
+
+                                                                                class="btn btn-lg btn-warning col m-1">
+                                                                                <span class="fa fa-edit"></span> </button>
+                                                                                <form action="{{ route('updateMusicAfter') }}" id="musicUpdateAfterForm" method="post">
+                                                                                    @csrf
+                                                                                        <input type="hidden" value="" id="musicUpdateAfterValue" name="music">
+                                                                                        <input type="hidden" name="themeid" value="{{ $theme->id }}">
+                                                                                </form>
+                                                                            <a href="#deleteMusicAfter"
+                                                                                    data-toggle="modal"
+                                                                                    musicAfterMusic="{{ $music['musicafter'] }}"
+                                                                               deleteMusicAfterLink="{{ route('deleteMusicAfter', $theme->id) }}" class="btn btn-lg btn-danger col m-1"> <span
+                                                                                    class="fa fa-trash"></span> </a>
+
+                                                                        </div>
+                                                                            {{-- </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                            </table> --}}
+                                                    @else
+                                                 <button class="btn btn-success text-uppercase" id="addMusicAfter"><span
+                                                        class="fa fa-file-audio"></span> add music After</button>
+                                                    <form action="{{ route('addMusicAfter') }}" id="musicAfterForm" method="post">
+                                                        @csrf
+                                                            <input type="hidden" value="" id="musicAfterValue" name="music">
+                                                            <input type="hidden" name="themeid" value="{{ $theme->id }}">
+                                                    </form>
+                                                    @endif
+                                                {{-- @endif --}}
+
+
+                                            </div>
+                                    </div>
                                     </div>
                                     </div>
                                     {{-- endcard --}}
@@ -528,6 +575,34 @@
 
         </div>
     </div>
+    <div id="deleteMusicAfter" class="modal">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-uppercase text-danger">confirm delete music After</h4>
+                </div>
+                <div class="row p-3">
+                    <div class="col-6">
+                         <audio controls>
+                            <source src="#" id="musicAfterMusic" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                            </audio>
+                    </div>
+                    <div class="col-3 m-1">
+                        <a href="" id="deleteMusicAfterLink" class="btn btn-danger text-uppercase mx-3">delete carousel</a>
+                    </div>
+                    <div class="col-3 m-1">
+                         <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
 @endsection
@@ -658,6 +733,17 @@
             $("#updateMusicBefores").modal("hide");
         }
 
+         function addMusicAfter(music) {
+            $("#musicAfterValue").val(music);
+            $("#musicAfterForm").submit();
+            $("#addMusicAfters").modal("hide");
+        }
+           function updateMusicAfter(music) {
+            $("#musicUpdateAfterValue").val(music);
+            $("#musicUpdateAfterForm").submit();
+            $("#updateMusicAfters").modal("hide");
+        }
+
          function addMusicOn(music) {
             $("#musicOnValue").val(music);
             $("#musicOnForm").submit();
@@ -698,15 +784,23 @@
             closeButton: true,
             modalId: 'addMusicBefores',
         });
-
-
-          $("#updateMusicBefore").fireModal({
+        $("#addMusicAfter").fireModal({
             center: true,
             title: "Music gallery",
-            body: musicBodyGallery("updateMusicBefore"),
+            body: musicBodyGallery("addMusicAfter"),
             size: 'modal-lg',
             closeButton: true,
-            modalId: 'updateMusicBefores',
+            modalId: 'addMusicAfters',
+        });
+
+
+          $("#updateMusicAfter").fireModal({
+            center: true,
+            title: "Music gallery",
+            body: musicBodyGallery("updateMusicAfter"),
+            size: 'modal-lg',
+            closeButton: true,
+            modalId: 'updateMusicAfters',
         });
 
          $("#addMusicOn").fireModal({
@@ -795,6 +889,14 @@
             $("#deleteMusicBeforeLink").attr('href',deleteMusicBeforeLink);
             $("#musicBeforeMusic").attr('src', musicBeforeMusic);
         })
+
+        $('#deleteMusicAfter').on('show.bs.modal', function(e) {
+            var musicAfterMusic = $(e.relatedTarget).attr('musicAfterMusic');
+            var deleteMusicAfterLink = $(e.relatedTarget).attr('deleteMusicAfterLink');
+            $("#deleteMusicAfterLink").attr('href',deleteMusicAfterLink);
+            $("#musicAfterMusic").attr('src', musicAfterMusic);
+        })
+
          $('#deleteMusicOn').on('show.bs.modal', function(e) {
             var musicOnMusic = $(e.relatedTarget).attr('musicOnMusic');
             var deleteMusicOnLink = $(e.relatedTarget).attr('deleteMusicOnLink');

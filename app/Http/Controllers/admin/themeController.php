@@ -343,6 +343,63 @@ public function deleteMusicBefore($themeid){
 }
 
 
+    public function addMusicAfter(Request $request)
+    {
+        $themeid = $request->themeid;
+
+        // return $themeid;
+        $music = $request->music;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        // return $template;
+        $previousMusic = json_decode($template->music, true);
+        // $musicBefore = [];
+        // $musicAfter = $music;
+        $previousMusic['musicafter'] = $music;
+        // return $previousMusic;
+        $vb = json_encode($previousMusic);
+        $template->music = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Music After added successfully');
+    }
+    public function updateMusicAfter(Request $request)
+    {
+        $themeid = $request->themeid;
+
+        // return $themeid;
+        $music = $request->music;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        // return $template;
+        $previousMusic = json_decode($template->music, true);
+        // $musicBefore = [];
+        if (array_key_exists("musicafter", $previousMusic)) {
+            $previousMusic['musicafter'] = $music;
+            // return "exit";
+        } else {
+            $previousMusic['musicafter'] = $music;
+            // return "Not exist";
+        }
+        // $previousMusic = $musicAfter;
+        // return $previousMusic;
+        $vb = json_encode($previousMusic);
+        $template->music = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Music after updated successfully');
+    }
+    public function deleteMusicAfter($themeid)
+    {
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        $previousMusic = json_decode($template->music, true);
+
+        if (array_key_exists("musicafter", $previousMusic)) {
+            unset($previousMusic['musicafter']);
+            // return "exit";
+        }
+        $vb = json_encode($previousMusic);
+        $template->music = $vb;
+        $template->update();
+        return redirect()->back()->with('unsuccess', 'Music After deleted successfully');
+    }
+
     public function addMusicOn(Request $request)
     {
         $themeid = $request->themeid;
