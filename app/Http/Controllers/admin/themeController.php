@@ -292,17 +292,116 @@ class themeController extends Controller
         $template = Templatesetup::where('theme_id', $themeid)->first();
         // return $template;
         $previousMusic = json_decode($template->music, true);
-        $musicBefore = [];
-        $musicBefore['musicbefore'] = $music;
-        $previousMusic = $musicBefore;
+        // $musicBefore = [];
+        // $musicBefore = $music;
+        $previousMusic ['musicbefore']= $music;
         // return $previousMusic;
         $vb = json_encode($previousMusic);
         $template->music = $vb;
         $template->update();
-        return redirect()->back()->with('success', 'Music before deleted successfully');
+        return redirect()->back()->with('success', 'Music before added successfully');
 
 
 
+    }
+    public function updateMusicBefore(Request $request){
+        $themeid = $request->themeid;
+
+        // return $themeid;
+        $music = $request->music;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        // return $template;
+        $previousMusic = json_decode($template->music, true);
+        // $musicBefore = [];
+        if (array_key_exists("musicbefore", $previousMusic)) {
+            $previousMusic['musicbefore'] = $music;
+            // return "exit";
+        } else {
+            $previousMusic['musicbefore'] = $music;
+            // return "Not exist";
+        }
+        // $previousMusic = $musicBefore;
+        // return $previousMusic;
+        $vb = json_encode($previousMusic);
+        $template->music = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Music before updated successfully');
+    }
+public function deleteMusicBefore($themeid){
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        $previousMusic = json_decode($template->music, true);
+
+        if (array_key_exists("musicbefore", $previousMusic)) {
+            unset($previousMusic['musicbefore']);
+            // return "exit";
+        }
+        $vb = json_encode($previousMusic);
+        $template->music = $vb;
+        $template->update();
+        return redirect()->back()->with('unsuccess', 'Music before deleted successfully');
+
+}
+
+
+    public function addMusicOn(Request $request)
+    {
+        $themeid = $request->themeid;
+
+        // return $themeid;
+        $music = $request->music;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        // return $template;
+        $previousMusic = json_decode($template->music, true);
+        // $musicOn = [];
+        // $musicOn['musicon'] = $music;
+        $previousMusic['musicon'] = $music;
+        // return print_r($previousMusic);
+
+
+        // $previousMusic = $musicOn;
+        // return $previousMusic;
+        $vb = json_encode($previousMusic);
+        $template->music = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Music On added successfully');
+    }
+    public function updateMusicOn(Request $request)
+    {
+        $themeid = $request->themeid;
+
+        // return $themeid;
+        $music = $request->music;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        // return $template;
+        $previousMusic = json_decode($template->music, true);
+        // $musicOn = [];
+        if (array_key_exists("musicon", $previousMusic)) {
+            $previousMusic['musicon'] = $music;
+            // return "exit";
+        } else {
+            $previousMusic['musicon'] = $music;
+            // return "Not exist";
+        }
+        // $previousMusic = $musicOn;
+        // return $previousMusic;
+        $vb = json_encode($previousMusic);
+        $template->music = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Music On updated successfully');
+    }
+    public function deleteMusicOn($themeid)
+    {
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        $previousMusic = json_decode($template->music, true);
+
+        if (array_key_exists("musicon", $previousMusic)) {
+            unset($previousMusic['musicon']);
+            // return "exit";
+        }
+        $vb = json_encode($previousMusic);
+        $template->music = $vb;
+        $template->update();
+        return redirect()->back()->with('unsuccess', 'Music On deleted successfully');
     }
 
     /**

@@ -71,7 +71,7 @@
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 col-lg-4">
                                     @foreach ($availablefunction as $function)
-                                        <div id="accordion">
+
                                             <div class="accordion">
                                                 <div class="accordion-header" role="button" data-toggle="collapse"
                                                     data-target="#{{ strtolower(str_replace(' ', '_', $function)) }}"
@@ -79,7 +79,6 @@
                                                     <h4>{{ ucfirst($function) }}</h4>
                                                 </div>
                                             </div>
-                                        </div>
                                     @endforeach
 
                                 </div>
@@ -90,11 +89,11 @@
                                             <h4>Preview</h4>
                                         </div>
                                         <div class="card-body">
-
+<div id="accordion">
                                             <div class="accordion-body collapse" id="carousel" data-parent="#accordion">
                                                 @if ($content)
                                                     @php
-                                                        $carousel = $content->carousel;
+                                                        $carousel = isset($content->carousel)?$content->carousel:[];
 
                                                     @endphp
                                                     <table class="table table-striped table-condensed table-sm">
@@ -110,6 +109,8 @@
                                                             @php
                                                                 $carous = 1;
                                                             @endphp
+                                                            @if ($carousel)
+
 
                                                             @foreach ($carousel as $key => $item)
 
@@ -144,6 +145,7 @@
                                                                 </tr>
 
                                                             @endforeach
+                                                            @endif
                                                         </tbody>
                                                     </table>
                                                 @endif
@@ -182,7 +184,7 @@
                                             <div class="accordion-body collapse" id="writer" data-parent="#accordion">
                                                 @if ($content)
                                                     @php
-                                                        $write = $content->writer;
+                                                        $write = isset($content->writer)?$content->writer:[];
 
                                                     @endphp
                                                     <table class="table table-striped table-condensed table-sm">
@@ -197,6 +199,8 @@
                                                             @php
                                                                 $writ = 1;
                                                             @endphp
+                                                            @if ($write)
+
 
                                                             @foreach ($write as $key => $item)
 
@@ -224,6 +228,7 @@
                                                                 </tr>
 
                                                             @endforeach
+                                                             @endif
                                                         </tbody>
                                                     </table>
                                                 @endif
@@ -249,57 +254,100 @@
                                             </div>
                                             {{-- music --}}
 
-                                            <div class="accordion-body collapse show" id="music_before"
+                                            <div class="accordion-body collapse" id="music_before"
                                                 data-parent="#accordion">
-                                                @if ($music)
+                                                {{-- @if ($music) --}}
                                                     @if (!empty($music['musicbefore']) )
-                                                            <table class="table table-striped table-condensed table-sm">
-                                                                    <thead>
-                                                                        <tr>
 
-                                                                            <th>Music</th>
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>
                                                                                  <audio controls>
                                                                                     <source src="{{ $music['musicbefore'] }}" type="audio/mpeg">
                                                                                     Your browser does not support the audio element.
                                                                                     </audio>
-                                                                            </td>
-                                                                            <td>
+                                                                            {{-- </td>
+                                                                            <td> --}}
                                                                                 <div class="row">
-                                                                            <a href="#updateCarousel"
+                                                                            <button id="updateMusicBefore"
 
-                                                                                data-toggle="modal"
-                                                                                class="btn btn-sm btn-warning col m-1">
-                                                                                <span class="fa fa-edit"></span> </a>
-                                                                            <a href="#deleteCarousel"
-                                                                               
-                                                                                class="btn btn-sm btn-danger col m-1"> <span
+
+                                                                                class="btn btn-lg btn-warning col m-1">
+                                                                                <span class="fa fa-edit"></span> </button>
+                                                                                <form action="{{ route('updateMusicBefore') }}" id="musicUpdateBeforeForm" method="post">
+                                                                                    @csrf
+                                                                                        <input type="hidden" value="" id="musicUpdatebeforeValue" name="music">
+                                                                                        <input type="hidden" name="themeid" value="{{ $theme->id }}">
+                                                                                </form>
+                                                                            <a href="#deleteMusicBefore"
+                                                                                    data-toggle="modal"
+                                                                                    musicBeforeMusic="{{ $music['musicbefore'] }}"
+                                                                               deleteMusicBeforeLink="{{ route('deleteMusicBefore', $theme->id) }}" class="btn btn-lg btn-danger col m-1"> <span
                                                                                     class="fa fa-trash"></span> </a>
+
                                                                         </div>
-                                                                            </td>
+                                                                            {{-- </td>
                                                                         </tr>
                                                                     </tbody>
-                                                            </table>
+                                                            </table> --}}
                                                     @else
                                                  <button class="btn btn-success text-uppercase" id="addMusicBefore"><span
-                                                        class="fa fa-file-audio"></span> add music before</a></button>
+                                                        class="fa fa-file-audio"></span> add music before</button>
                                                     <form action="{{ route('addMusicBefore') }}" id="musicBeforeForm" method="post">
                                                         @csrf
                                                             <input type="hidden" value="" id="musicbeforeValue" name="music">
                                                             <input type="hidden" name="themeid" value="{{ $theme->id }}">
                                                     </form>
                                                     @endif
-                                                @endif
+                                                {{-- @endif --}}
 
 
                                             </div>
+                                    <div class="accordion-body collapse" id="music_on"
+                                                data-parent="#accordion">
+                                                {{-- @if ($music) --}}
+                                                    @if (!empty($music['musicon']) )
 
+                                                                                 <audio controls>
+                                                                                    <source src="{{ $music['musicon'] }}" type="audio/mpeg">
+                                                                                    Your browser does not support the audio element.
+                                                                                    </audio>
+                                                                            {{-- </td>
+                                                                            <td> --}}
+                                                                                <div class="row">
+                                                                            <button id="updateMusicOn"
+
+
+                                                                                class="btn btn-lg btn-warning col m-1">
+                                                                                <span class="fa fa-edit"></span> </button>
+                                                                                <form action="{{ route('updateMusicOn') }}" id="musicUpdateOnForm" method="post">
+                                                                                    @csrf
+                                                                                        <input type="hidden" value="" id="musicUpdateOnValue" name="music">
+                                                                                        <input type="hidden" name="themeid" value="{{ $theme->id }}">
+                                                                                </form>
+                                                                            <a href="#deleteMusicOn"
+                                                                                    data-toggle="modal"
+                                                                                    musicOnMusic="{{ $music['musicon'] }}"
+                                                                               deleteMusicOnLink="{{ route('deleteMusicOn', $theme->id) }}" class="btn btn-lg btn-danger col m-1"> <span
+                                                                                    class="fa fa-trash"></span> </a>
+
+                                                                        </div>
+                                                                            {{-- </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                            </table> --}}
+                                                    @else
+                                                 <button class="btn btn-success text-uppercase" id="addMusicOn"><span
+                                                        class="fa fa-file-audio"></span> add music On</button>
+                                                    <form action="{{ route('addMusicOn') }}" id="musicOnForm" method="post">
+                                                        @csrf
+                                                            <input type="hidden" value="" id="musicOnValue" name="music">
+                                                            <input type="hidden" name="themeid" value="{{ $theme->id }}">
+                                                    </form>
+                                                    @endif
+                                                {{-- @endif --}}
+
+
+                                            </div>
                                         </div>
+                                    </div>
                                     </div>
                                     {{-- endcard --}}
                                 </div>
@@ -452,6 +500,35 @@
         </div>
     </div>
 
+      <div id="deleteMusicBefore" class="modal">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-uppercase text-danger">confirm delete music before</h4>
+                </div>
+                <div class="row p-3">
+                    <div class="col-6">
+                         <audio controls>
+                            <source src="#" id="musicBeforeMusic" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                            </audio>
+                    </div>
+                    <div class="col-3 m-1">
+                        <a href="" id="deleteMusicBeforeLink" class="btn btn-danger text-uppercase mx-3">delete carousel</a>
+                    </div>
+                    <div class="col-3 m-1">
+                         <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 
 @endsection
 
@@ -575,6 +652,22 @@
             $("#musicBeforeForm").submit();
             $("#addMusicBefores").modal("hide");
         }
+           function updateMusicBefore(music) {
+            $("#musicUpdatebeforeValue").val(music);
+            $("#musicUpdateBeforeForm").submit();
+            $("#updateMusicBefores").modal("hide");
+        }
+
+         function addMusicOn(music) {
+            $("#musicOnValue").val(music);
+            $("#musicOnForm").submit();
+            $("#addMusicOns").modal("hide");
+        }
+           function updateMusicOn(music) {
+            $("#musicUpdateOnValue").val(music);
+            $("#musicUpdateOnForm").submit();
+            $("#updateMusicOns").modal("hide");
+        }
 
         function addCarouselImage(image) {
             $("#carouselImgPreview").attr("src", image);
@@ -604,6 +697,35 @@
             size: 'modal-lg',
             closeButton: true,
             modalId: 'addMusicBefores',
+        });
+
+
+          $("#updateMusicBefore").fireModal({
+            center: true,
+            title: "Music gallery",
+            body: musicBodyGallery("updateMusicBefore"),
+            size: 'modal-lg',
+            closeButton: true,
+            modalId: 'updateMusicBefores',
+        });
+
+         $("#addMusicOn").fireModal({
+            center: true,
+            title: "Music gallery",
+            body: musicBodyGallery("addMusicOn"),
+            size: 'modal-lg',
+            closeButton: true,
+            modalId: 'addMusicOns',
+        });
+
+
+          $("#updateMusicOn").fireModal({
+            center: true,
+            title: "Music gallery",
+            body: musicBodyGallery("updateMusicOn"),
+            size: 'modal-lg',
+            closeButton: true,
+            modalId: 'updateMusicOns',
         });
 
         $("#updateimage").fireModal({
@@ -666,6 +788,21 @@
             $(".deleteWriterContent").text(writerDeleteContent);
             $("#deleteWriterlLink").attr('href', writerDeleteUrl);
         })
+
+         $('#deleteMusicBefore').on('show.bs.modal', function(e) {
+            var musicBeforeMusic = $(e.relatedTarget).attr('musicBeforeMusic');
+            var deleteMusicBeforeLink = $(e.relatedTarget).attr('deleteMusicBeforeLink');
+            $("#deleteMusicBeforeLink").attr('href',deleteMusicBeforeLink);
+            $("#musicBeforeMusic").attr('src', musicBeforeMusic);
+        })
+         $('#deleteMusicOn').on('show.bs.modal', function(e) {
+            var musicOnMusic = $(e.relatedTarget).attr('musicOnMusic');
+            var deleteMusicOnLink = $(e.relatedTarget).attr('deleteMusicOnLink');
+            $("#deleteMusicOnLink").attr('href',deleteMusicOnLink);
+            $("#musicOnMusic").attr('src', musicOnMusic);
+        })
+
+
 
     </script>
 

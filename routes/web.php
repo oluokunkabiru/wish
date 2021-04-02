@@ -74,6 +74,12 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('adminDeleteWriterSetup/{theme}/{Writerid}', 'admin\themeController@deleteWriter')->name('admindeleteWriterSetup');
     // music
     Route::post('adminAddMusicBefore', 'admin\themeController@addMusicBefore' )->name('addMusicBefore');
+    Route::post('adminupdateMusicBefore', 'admin\themeController@updateMusicBefore')->name('updateMusicBefore');
+    Route::get('adminDeleteMusicBefore/{theme}', 'admin\themeController@deleteMusicBefore')->name('deleteMusicBefore');
+    Route::post('adminAddMusicOn', 'admin\themeController@addMusicOn')->name('addMusicOn');
+    Route::post('adminupdateMusicOn', 'admin\themeController@updateMusicOn')->name('updateMusicOn');
+    Route::get('adminDeleteMusicOn/{theme}', 'admin\themeController@deleteMusicOn')->name('deleteMusicOn');
+
 
 
 });
