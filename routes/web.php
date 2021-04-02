@@ -58,14 +58,23 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('theme', 'admin\themeController');
     Route::resource('functionality', 'admin\FunctionalityController');
     Route::get('/add-functionality/{functionid}/{themename}/{themeid}/{functionname}', 'admin\themeController@addFunction')->name('addFunctionalityToThemeSetup');
+//    carousel
     Route::post('adminCarouselSetupt', 'admin\themeController@addCarousel')->name('templateAddCarouselSetup');
     Route::patch('adminCarouselSetupUpdate', 'admin\themeController@updateCarousel')->name("templateUpdateCarouselSetup");
     Route::get('adminDeleteCarouseSetup/{theme}/{carouselid}', 'admin\themeController@deleteCarousel')->name('admindeleteCarouselSetup');
+    // template/theme
     Route::post('activateTheme', 'admin\themeController@activateTheme')->name('activateTheme');
     Route::get('/deactivate-theme/{id}', 'admin\themeController@themeDisable')->name("themeDisable");
     Route::get("/setup/{id}/{themename}", 'admin\themeController@presetup')->name('themePreset');
     Route::resource('template', 'admin\templateController');
     Route::get('theme-view', 'admin\themeController@themePreview')->name('themePreview');
+    // writer
+    Route::post('adminWriterSetup', 'admin\themeController@writerSetup')->name('adminWriterSetup');
+    Route::patch('adminWriterSetupUpdate', 'admin\themeController@writerSetupUpdate')->name('writerSetupUpdate');
+    Route::get('adminDeleteWriterSetup/{theme}/{Writerid}', 'admin\themeController@deleteWriter')->name('admindeleteWriterSetup');
+    // music
+    Route::post('adminAddMusicBefore', 'admin\themeController@addMusicBefore' )->name('addMusicBefore');
+
 
 });
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CarouselRequest;
 use App\Http\Requests\themeRequest;
 use App\Http\Requests\themeUpdateRequest;
+use App\Http\Requests\WriterRequest;
 use App\Models\Category;
 use App\Models\Functionality;
 use App\Models\Theme;
@@ -13,6 +14,7 @@ use App\Models\File;
 use App\Models\Templatesetup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\FuncCall;
 use PhpZip\ZipFile;
 use SebastianBergmann\Template\Template;
 
@@ -108,10 +110,10 @@ class themeController extends Controller
         $template = Templatesetup::where('theme_id', $id)->first();
         $availablefunction = json_decode($template->functionality, true);
         $content = json_decode($template->content);
-        // return dd($content);
-        // print_r(json_decode($content['caption']));
+        $music = json_decode($template->music, true);
+        // return prin($music);
         $medias = File::with('media')->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
-        return view('users.admin.theme.presetup', compact(['functions','content', 'theme', 'medias', 'availablefunction' ]));
+        return view('users.admin.theme.presetup', compact(['functions','music',  'content', 'theme', 'medias', 'availablefunction' ]));
     }
 
     public function addFunction($functionid, $themename, $themeid, $functionname){
@@ -216,6 +218,89 @@ class themeController extends Controller
         $template->content = $vb;
         $template->update();
         return redirect()->back()->with('success', 'Carousel deleted successfully');
+
+
+    }
+
+    public function writerSetup(WriterRequest $request){
+        $writers = $request->writer;
+        $themeid = $request->themeid;
+        // return $themeid;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        $previousContent = json_decode($template->content, true);
+        $writer = [];
+        $writer['name'] = $writers;
+        if (isset($previousContent['writer'])) {
+            $totalCaption = count($previousContent['writer']);
+            $nextCaption = $totalCaption + 1;
+            $previousContent['writer'][$nextCaption] = $writer;
+        } else {
+            $totalCaption = 0;
+            $previousContent['writer'][$totalCaption] = $writer;
+        }
+        $vb = json_encode($previousContent);
+        $template->content = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Writer added successfully');
+
+
+
+    }
+
+    public function writerSetupUpdate(WriterRequest $request){
+            $themeid = $request->themeid;
+            $writerid = $request->writerid;
+            $writer = $request->writer;
+            $writers = [];
+            $template = Templatesetup::where('theme_id', $themeid)->first();
+            $writers['name'] = $writer;
+
+        $previousContent = json_decode($template->content, true);
+
+        if(array_key_exists($writerid, $previousContent['writer'])){
+            $previousContent['writer'][$writerid] = $writers;
+        }else{
+            $previousContent['writer'][$writerid] = $writers;
+
+        }
+        $vb = json_encode($previousContent);
+        $template->content = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Writer updated successfully');
+    }
+
+    public function deleteWriter($themeid, $writerid)
+    {
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        $previousContent = json_decode($template->content, true);
+
+
+        if (array_key_exists($writerid, $previousContent['writer'])) {
+            unset($previousContent['writer'][$writerid]);
+        }
+        $vb = json_encode($previousContent);
+        $template->content = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Carousel deleted successfully');
+    }
+
+    public function addMusicBefore(Request $request){
+        $themeid = $request->themeid;
+
+        // return $themeid;
+        $music = $request->music;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        // return $template;
+        $previousMusic = json_decode($template->music, true);
+        $musicBefore = [];
+        $musicBefore['musicbefore'] = $music;
+        $previousMusic = $musicBefore;
+        // return $previousMusic;
+        $vb = json_encode($previousMusic);
+        $template->music = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Music before deleted successfully');
+
 
 
     }
