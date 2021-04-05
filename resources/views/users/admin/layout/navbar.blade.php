@@ -72,9 +72,9 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Media</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('admin-media-gallery.index') }}">All Media</a></li>
-                    <li><a class="nav-link" href="{{ route('photoGallery') }}">Photos</a></li>
-                    <li><a class="nav-link" href="{{ route('audioGallery') }}">Audios</a></li>
-                    <li><a class="nav-link" href="{{ route('videoGallery') }}">Videos</a></li>
+                    <li><a class="nav-link" href="{{ route('adminPhotoGallery') }}">Photos</a></li>
+                    <li><a class="nav-link" href="{{ route('adminAudioGallery') }}">Audios</a></li>
+                    <li><a class="nav-link" href="{{ route('adminVideoGallery') }}">Videos</a></li>
 
                 </ul>
             </li>

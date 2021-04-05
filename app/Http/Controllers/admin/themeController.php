@@ -111,9 +111,12 @@ class themeController extends Controller
         $availablefunction = json_decode($template->functionality, true);
         $content = json_decode($template->content);
         $music = json_decode($template->music, true);
+        $video = json_decode($template->video, true);
+        $images = json_decode($template->image, true);
+
         // return prin($music);
         $medias = File::with('media')->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
-        return view('users.admin.theme.presetup', compact(['functions','music',  'content', 'theme', 'medias', 'availablefunction' ]));
+        return view('users.admin.theme.presetup', compact(['functions','music', 'video', 'images',  'content', 'theme', 'medias', 'availablefunction' ]));
     }
 
     public function addFunction($functionid, $themename, $themeid, $functionname){
@@ -327,7 +330,7 @@ class themeController extends Controller
         $template->update();
         return redirect()->back()->with('success', 'Music before updated successfully');
     }
-public function deleteMusicBefore($themeid){
+    public function deleteMusicBefore($themeid){
         $template = Templatesetup::where('theme_id', $themeid)->first();
         $previousMusic = json_decode($template->music, true);
 
@@ -340,7 +343,7 @@ public function deleteMusicBefore($themeid){
         $template->update();
         return redirect()->back()->with('unsuccess', 'Music before deleted successfully');
 
-}
+    }
 
 
     public function addMusicAfter(Request $request)
@@ -461,6 +464,219 @@ public function deleteMusicBefore($themeid){
         return redirect()->back()->with('unsuccess', 'Music On deleted successfully');
     }
 
+    //videos
+
+    public function addVideoBefore(Request $request)
+    {
+        $themeid = $request->themeid;
+
+        // return $themeid;
+        $video = $request->video;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        // return $template;
+        $previousVideo = json_decode($template->video, true);
+        // $musicBefore = [];
+        // $videoBefore = $video;
+        $previousVideo['videobefore'] = $video;
+        // return $previousvideo;
+        $vb = json_encode($previousVideo);
+        $template->video = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Video before added successfully');
+    }
+    public function updateVideoBefore(Request $request)
+    {
+        $themeid = $request->themeid;
+
+        // return $themeid;
+        $video = $request->video;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        // return $template;
+        $previousVideo = json_decode($template->video, true);
+        // $videoBefore = [];
+        if (array_key_exists("videobefore", $previousVideo)) {
+            $previousVideo['videobefore'] = $video;
+            // return "exit";
+        } else {
+            $previousVideo['videobefore'] = $video;
+            // return "Not exist";
+        }
+        // $previousvideo = $videoBefore;
+        // return $previousvideo;
+        $vb = json_encode($previousVideo);
+        $template->video = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Video before updated successfully');
+    }
+    public function deleteVideoBefore($themeid)
+    {
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        $previousVideo = json_decode($template->video, true);
+
+        if (array_key_exists("videobefore", $previousVideo)) {
+            unset($previousVideo['videobefore']);
+            // return "exit";
+        }
+        $vb = json_encode($previousVideo);
+        $template->video = $vb;
+        $template->update();
+        return redirect()->back()->with('unsuccess', 'Video before deleted successfully');
+    }
+
+
+    public function addVideoAfter(Request $request)
+    {
+        $themeid = $request->themeid;
+
+        // return $themeid;
+        $video = $request->video;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        // return $template;
+        $previousVideo = json_decode($template->video, true);
+        // $videoBefore = [];
+        // $VideoAfter = $video;
+        $previousVideo['videoafter'] = $video;
+        // return $previousvideo;
+        $vb = json_encode($previousVideo);
+        $template->video = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Video After added successfully');
+    }
+    public function updateVideoAfter(Request $request)
+    {
+        $themeid = $request->themeid;
+
+        // return $themeid;
+        $video = $request->video;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        // return $template;
+        $previousVideo = json_decode($template->video, true);
+        // $videoBefore = [];
+        if (array_key_exists("videoafter", $previousVideo)) {
+            $previousVideo['videoafter'] = $video;
+            // return "exit";
+        } else {
+            $previousVideo['videoafter'] = $video;
+            // return "Not exist";
+        }
+        // $previousvideo = $videoAfter;
+        // return $previousvideo;
+        $vb = json_encode($previousVideo);
+        $template->video = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Video after updated successfully');
+    }
+    public function deleteVideoAfter($themeid)
+    {
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        $previousVideo = json_decode($template->video, true);
+
+        if (array_key_exists("videoafter", $previousVideo)) {
+            unset($previousVideo['videoafter']);
+            // return "exit";
+        }
+        $vb = json_encode($previousVideo);
+        $template->video = $vb;
+        $template->update();
+        return redirect()->back()->with('unsuccess', 'Video After deleted successfully');
+    }
+
+    public function addVideoOn(Request $request)
+    {
+        $themeid = $request->themeid;
+
+        // return $themeid;
+        $video = $request->video;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        // return $template;
+        $previousVideo = json_decode($template->video, true);
+        // $videoOn = [];
+        // $videoOn['videoon'] = $video;
+        $previousVideo['videoon'] = $video;
+        // return print_r($previousvideo);
+
+
+        // $previousvideo = $videoOn;
+        // return $previousvideo;
+        $vb = json_encode($previousVideo);
+        $template->video = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Video On added successfully');
+    }
+    public function updateVideoOn(Request $request)
+    {
+        $themeid = $request->themeid;
+
+        // return $themeid;
+        $video = $request->video;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        // return $template;
+        $previousVideo = json_decode($template->video, true);
+        // $videoOn = [];
+        if (array_key_exists("videoon", $previousVideo)) {
+            $previousVideo['videoon'] = $video;
+            // return "exit";
+        } else {
+            $previousVideo['videoon'] = $video;
+            // return "Not exist";
+        }
+        // $previousvideo = $videoOn;
+        // return $previousvideo;
+        $vb = json_encode($previousVideo);
+        $template->video = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Video On updated successfully');
+    }
+    public function deleteVideoOn($themeid)
+    {
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        $previousVideo = json_decode($template->video, true);
+
+        if (array_key_exists("videoon", $previousVideo)) {
+            unset($previousvideo['videoon']);
+            // return "exit";
+        }
+        $vb = json_encode($previousVideo);
+        $template->video = $vb;
+        $template->update();
+        return redirect()->back()->with('unsuccess', 'Video On deleted successfully');
+    }
+// image sliders
+    public function adminAddImageSliders(Request $request){
+        $themeid = $request->themeid;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+
+        $slider['image'] = $request->image;
+
+        $previousContent = json_decode($template->image, true);
+
+        if (isset($previousContent['sliders'])) {
+            $totalSlider = count($previousContent['sliders']);
+            $nextSlider = $totalSlider + 1;
+            $previousContent['sliders'][$nextSlider] = $slider;
+        } else {
+            $totalSlider = 0;
+            $previousContent['sliders'][$totalSlider] = $slider;
+        }
+        $vb = json_encode($previousContent);
+        $template->image = $vb;
+        $template->update();
+        return redirect()->back()->with('success', 'Slider Image added successfully');
+    }
+    public function deleteImageSlider($themeid, $index){
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        $previousContent = json_decode($template->image, true);
+        if (array_key_exists($index, $previousContent['sliders'])) {
+            unset($previousContent['sliders'][$index]);
+            // return "Exist";
+        }
+        // return "not Exixt";
+        $vb = json_encode($previousContent);
+        $template->image = $vb;
+        $template->update();
+        return redirect()->back()->with('unsuccess', 'Slider Image deleted successfully');
+
+    }
     /**
      * Show the form for editing the specified resource.
      *

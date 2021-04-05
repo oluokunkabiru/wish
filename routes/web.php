@@ -82,6 +82,22 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::post('adminAddMusicAfter', 'admin\themeController@addMusicAfter')->name('addMusicAfter');
     Route::post('adminupdateMusicAfter', 'admin\themeController@updateMusicAfter')->name('updateMusicAfter');
     Route::get('adminDeleteMusicAfter/{theme}', 'admin\themeController@deleteMusicAfter')->name('deleteMusicAfter');
+    // videos
+    Route::post('adminAddVideoBefore', 'admin\themeController@addVideoBefore')->name('addVideoBefore');
+    Route::post('adminupdateVideoBefore', 'admin\themeController@updateVideoBefore')->name('updateVideoBefore');
+    Route::get('adminDeleteVideoBefore/{theme}', 'admin\themeController@deleteVideoBefore')->name('deleteVideoBefore');
+    Route::post('adminAddVideoOn', 'admin\themeController@addVideoOn')->name('addVideoOn');
+    Route::post('adminupdateVideoOn', 'admin\themeController@updateVideoOn')->name('updateVideoOn');
+    Route::get('adminDeleteVideoOn/{theme}', 'admin\themeController@deleteVideoOn')->name('deleteVideoOn');
+    Route::post('adminAddVideoAfter', 'admin\themeController@addVideoAfter')->name('addVideoAfter');
+    Route::post('adminupdateVideoAfter', 'admin\themeController@updateVideoAfter')->name('updateVideoAfter');
+    Route::get('adminDeleteVideoAfter/{theme}', 'admin\themeController@deleteVideoAfter')->name('deleteVideoAfter');
+//
+
+    // image sliders
+    Route::post('adminAddImageSliders', 'admin\themeController@adminAddImageSliders')->name('adminAddImageSliders');
+
+    Route::get('adminDeleteImageSliderSetupe/{theme}/{id}', 'admin\themeController@deleteImageSlider')->name('admindeleteImageSliderSetup');
 
 
 
