@@ -69,10 +69,15 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get("/setup/{id}/{themename}", 'admin\themeController@presetup')->name('themePreset');
     Route::resource('template', 'admin\templateController');
     Route::get('theme-view', 'admin\themeController@themePreview')->name('themePreview');
-    // writer
+    // writer adminDateSetup
     Route::post('adminWriterSetup', 'admin\themeController@writerSetup')->name('adminWriterSetup');
     Route::patch('adminWriterSetupUpdate', 'admin\themeController@writerSetupUpdate')->name('writerSetupUpdate');
     Route::get('adminDeleteWriterSetup/{theme}/{Writerid}', 'admin\themeController@deleteWriter')->name('admindeleteWriterSetup');
+    // date adminDateSetup
+    Route::post('adminDateSetup', 'admin\themeController@adminDateSetup')->name('adminDateSetup');
+    Route::patch('adminWriterSetupUpdate', 'admin\themeController@writerSetupUpdate')->name('writerSetupUpdate');
+    Route::get('adminDeleteWriterSetup/{theme}/{Writerid}', 'admin\themeController@deleteWriter')->name('admindeleteWriterSetup');
+
     // music
     Route::post('adminAddMusicBefore', 'admin\themeController@addMusicBefore' )->name('addMusicBefore');
     Route::post('adminupdateMusicBefore', 'admin\themeController@updateMusicBefore')->name('updateMusicBefore');

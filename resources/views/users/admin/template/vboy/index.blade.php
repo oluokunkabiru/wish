@@ -2,7 +2,7 @@
 @section('title', $theme->name)
 @section('style')
 <style>
-.container {
+#slides {
     background-image: url('{{ asset($images['sliders'][0]['image']) }}');
     background-size: 100%;
     width: 100%;
@@ -152,10 +152,20 @@ ul#example li p {
 
 
 
-
+@php
+$currentDate = date("d-m-Y");
+$today=strtotime($currentDate);
+$birthday=strtotime($date);
+// $diff=date_diff($date1,$date2);
+@endphp
         <h1 class="p-2 font-weight-bold text-center"><span class="bg-primary p-2 text-warning">Happy</span> <span
-                class="bg-warning p-2 text-primary">Birthday</span> <span
-                class="adv bg-primary text-white p-2 m-2"></span> </h1>
+                class="bg-warning p-2 text-primary">Birthday</span>
+                @if ($today < $birthday)
+                <span class="bg-primary text-white p-2 m-2">In Advance</span>
+                @elseif ($today > $birthday)
+                <span class="bg-primary text-white p-2 m-2">In Arrear</span>
+                @endif
+                 </h1>
         <h2 class="font-weight-bold"><span class="typewrite text-capitalize" data-period="2000"
                 data-type='<?php echo $writers; ?>'></span></h2>
         <h5 class="p-3 font-weight-bold"><span class="text-uppercase bg-warning text-primary p-2">by</span><span
@@ -165,23 +175,25 @@ ul#example li p {
 
 <!-- <embed src="images/HBD.mp3" loop="true" autostart="true" width="100" height="100"> -->
 
-@php
-$today = date("d-m-Y");
-@endphp
-@if ($today < $date) @if (!empty($music['musicbefore']))
+
+
+
+
+@if ($today < $birthday )
+@if (!empty($music['musicbefore']))
 <audio controls loop id="birthdaymusic" hidden name="musicbefore">
     <source src="{{ url($music['musicbefore']) }}" type="audio/mpeg">
     Your browser does not support the audio element.
     </audio>
     @endif
-    @elseif ($today == $date)
+    @elseif ($today == $birthday)
     @if (!empty($music['musicon']))
     <audio controls loop id="birthdaymusic" hidden name="musicon">
         <source src="{{ url($music['musicon']) }}" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     @endif
-    @elseif ($today > $date)
+    @elseif ($today > $birthday)
     @if (!empty($music['musicafter']))
     <audio controls loop id="birthdaymusic" hidden name="musicafter">
         <source src="{{ url($music['musicafter']) }}" type="audio/mpeg">
@@ -294,7 +306,15 @@ $today = date("d-m-Y");
         x.play();
 
     }
-
+$("#commentbox").summernote({
+                dialogsInBody: true,
+                minHeight: 150,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough']],
+                    ['para', ['paragraph']]
+                ]
+            });
 
     $("#example").countdown('{{ $date }}').on('update.countdown', function(event) {
         var $this = $(this).html(event.strftime('' +

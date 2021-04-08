@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CarouselRequest;
+use App\Http\Requests\DateRequest;
 use App\Http\Requests\themeRequest;
 use App\Http\Requests\themeUpdateRequest;
 use App\Http\Requests\WriterRequest;
@@ -119,7 +120,7 @@ class themeController extends Controller
         $video = json_decode($template->video, true);
         $images = json_decode($template->image, true);
         // return $images['sliders'][0]['image'];
-        $date = "2021-05-12";
+        $date = $template->date;
 
         return view('users.admin.template.' . $theme->name . ".index", compact(['theme','images', 'content', 'music', 'video', 'music', 'date']));
     }
@@ -136,7 +137,7 @@ class themeController extends Controller
 
         // return prin($music);
         $medias = Files::with('media')->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
-        return view('users.admin.theme.presetup', compact(['functions','music', 'video', 'images',  'content', 'theme', 'medias', 'availablefunction' ]));
+        return view('users.admin.theme.presetup', compact(['functions','music', 'template', 'video', 'images',  'content', 'theme', 'medias', 'availablefunction' ]));
     }
 
     public function addFunction($functionid, $themename, $themeid, $functionname){
@@ -268,6 +269,17 @@ class themeController extends Controller
 
 
 
+    }
+    public function adminDateSetup(DateRequest $request)
+    {
+        $date = $request->date;
+        $themeid = $request->themeid;
+        // return $themeid;
+        // return $date;
+        $template = Templatesetup::where('theme_id', $themeid)->first();
+        $template->date =$date;
+        $template->update();
+        return redirect()->back()->with('success', 'Date added successfully');
     }
 
     public function writerSetupUpdate(WriterRequest $request){

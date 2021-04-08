@@ -259,6 +259,33 @@
                                                             writer</button>
                                                     </form>
                                                 </div>
+                                                {{-- date --}}
+                                                <div class="accordion-body collapse" id="date" data-parent="#accordion">
+
+                                                    @if (!empty($template->date))
+                                                    <p class="btn btn-lg btn-rounded btn-dark font-weight-bold">{{ $template->date }}</p>
+                                                    @endif
+                                                    <form action="{{ route('adminDateSetup') }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="themeid" value="{{ $theme->id }}">
+                                                        <div class="form-group">
+                                                            <label for="email">Date:</label>
+                                                            <input type="date" name="date" value="{{ old('date') }}"
+                                                                class="form-control {{ $errors->has('date') ? ' is-invalid' : '' }}">
+                                                        </div>
+                                                        @if ($errors->has('date'))
+                                                            <span class="invalid-feedback" role="alert"
+                                                                style="display:block">
+                                                                <strong>{{ $errors->first('date') }}</strong>
+                                                            </span>
+
+
+                                                        <button type="submit"
+                                                            class="btn btn-success text-uppercase float-right mx-2">Add
+                                                             Date</button>
+                                                    </form>
+                                                    @endif
+                                                </div>
                                                 {{-- music --}}
 
                                                 <div class="accordion-body collapse" id="music_before"
