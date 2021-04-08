@@ -43,7 +43,10 @@ Route::prefix('users')->middleware(['auth', 'users'])->group(function () {
     Route::get('audio-gallery', 'users\usersMedia@audioGallery')->name('audioGallery');
     Route::get('video-gallery', 'users\usersMedia@videoGallery')->name('videoGallery');
     Route::get('/download/{image}', 'users\usersMedia@downloadSingle')->name('downloadSingleMedial');
-
+    // theme
+    Route::resource('theme', 'users\UsersThemeConroller');
+    Route::get('theme/{id}/{name}/preview', 'users\UsersThemeConroller@listThemesCategory')->name('themeCategory');
+    Route::get('theme/{id}/{category}/{name}/preview', 'users\UsersThemeConroller@usersPreviewTheme')->name('usersPreviewTheme');
     Route::get('download/images', 'usersMedia@downloadImage')->name('downloadImage');
 });
 

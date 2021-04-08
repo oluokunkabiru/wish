@@ -98,10 +98,15 @@
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Themes</span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="auth-forgot-password.html">Birthday</a></li>
-                    <li><a href="auth-login.html">Wedding</a></li>
-                    <li><a href="auth-register.html">Graduation</a></li>
-                    <li><a href="auth-reset-password.html">Admission</a></li>
+                    @php
+                        $category = App\Models\Category::get();
+
+                    @endphp
+                    @foreach ($category as $item)
+                    <li><a href="{{ route('themeCategory', [$item->id, $item->name]) }}">{{ ucwords($item->name) }}</a></li>
+
+                    @endforeach
+
                 </ul>
             </li>
             <li class="menu-header">Settings</li>
