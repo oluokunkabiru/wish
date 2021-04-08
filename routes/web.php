@@ -58,7 +58,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('theme', 'admin\themeController');
     Route::resource('functionality', 'admin\FunctionalityController');
     Route::get('/add-functionality/{functionid}/{themename}/{themeid}/{functionname}', 'admin\themeController@addFunction')->name('addFunctionalityToThemeSetup');
-//    carousel
+    Route::get('theme/{id}/preview', 'admin\themeController@previewTemplate')->name("previewTemplate");
+    //    carousel
     Route::post('adminCarouselSetupt', 'admin\themeController@addCarousel')->name('templateAddCarouselSetup');
     Route::patch('adminCarouselSetupUpdate', 'admin\themeController@updateCarousel')->name("templateUpdateCarouselSetup");
     Route::get('adminDeleteCarouseSetup/{theme}/{carouselid}', 'admin\themeController@deleteCarousel')->name('admindeleteCarouselSetup');

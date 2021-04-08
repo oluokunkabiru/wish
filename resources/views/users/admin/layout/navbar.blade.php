@@ -59,6 +59,17 @@
                 <a href="{{ route('usersdashboard') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
 
             </li>
+                <li class="menu-header">Themes</li>
+            <li class="dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-compass"></i> <span>Themes</span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ route('theme.create') }}">Add New Theme</a></li>
+                    <li><a href="{{ route('theme.index') }}">Manage Theme</a></li>
+                    <li><a href="{{ route('themePreview') }}">View Theme</a></li>
+                    <li><a href="{{ route('functionality.index') }}">Theme Functionality</a></li>
+                </ul>
+            </li>
+
             <li class="menu-header">Wish</li>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Wish</span></a>
@@ -102,16 +113,6 @@
             </li> --}}
 
 
-            <li class="menu-header">Themes</li>
-            <li class="dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="far fa-compass"></i> <span>Themes</span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="{{ route('theme.create') }}">Add New Theme</a></li>
-                    <li><a href="{{ route('theme.index') }}">Manage Theme</a></li>
-                    <li><a href="{{ route('themePreview') }}">View Theme</a></li>
-                    <li><a href="{{ route('functionality.index') }}">Theme Functionality</a></li>
-                </ul>
-            </li>
 
 
             <li class="menu-header">Settings</li>

@@ -1096,6 +1096,16 @@
             $("#musicUpdateBeforeForm").submit();
             $("#updateMusicBefores").modal("hide");
         }
+        function updateMusicOn(music) {
+            $("#musicUpdateOnValue").val(music.replace("/", ""));
+            $("#musicUpdateOnForm").submit();
+            $("#updateMusicOns").modal("hide");
+        }
+         function updateMusicAfter(music) {
+            $("#musicUpdateAfterValue").val(music.replace("/", ""));
+            $("#musicUpdateAfterForm").submit();
+            $("#updateMusicAfters").modal("hide");
+        }
 
         function addVideoAfter(video) {
             $("#videoAfterValue").val(video.replace("/", ""));
@@ -1113,6 +1123,11 @@
             $("#videoUpdateAfterValue").val(video.replace("/", ""));
             $("#videoUpdateAfterForm").submit();
             $("#updateVideoAfters").modal("hide");
+        }
+        function updateVideoOn(video) {
+            $("#videoUpdateOnValue").val(video.replace("/", ""));
+            $("#videoUpdateOnForm").submit();
+            $("#updateVideoOns").modal("hide");
         }
 
         function addVideoOn(video) {
@@ -1203,6 +1218,14 @@
             size: 'modal-lg',
             closeButton: true,
             modalId: 'updateMusicAfters',
+        });
+        $("#updateMusicBefore").fireModal({
+            center: true,
+            title: "Music gallery",
+            body: musicBodyGallery("updateMusicBefore"),
+            size: 'modal-lg',
+            closeButton: true,
+            modalId: 'updateMusicBefores',
         });
 
         $("#addMusicOn").fireModal({

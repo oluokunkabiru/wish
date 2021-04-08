@@ -10,8 +10,10 @@ use App\Http\Requests\WriterRequest;
 use App\Models\Category;
 use App\Models\Functionality;
 use App\Models\Theme;
-use App\Models\File;
+use App\Models\File as Files;
 use App\Models\Templatesetup;
+// use Facade\FlareClient\Stacktrace\File;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\FuncCall;
@@ -30,6 +32,7 @@ class themeController extends Controller
         //
         $themies = Theme::with(['user', 'category'])->get();
         $categories = Category::orderby('id', 'desc')->get();
+
 
         // return $themies;
         return view('users.admin.theme.index', compact(['themies', 'categories']));
@@ -75,12 +78,13 @@ class themeController extends Controller
         $theme->description = $request->description;
         $theme->user_id = Auth::user()->id;
         $theme->active = "disabled";
-        $theme->save();
         $dir = public_path("/themes/" . $theme->name . "/");
         if (!File::isDirectory($dir)) {
             File::makeDirectory($dir, 0777, true, true);
+
             // echo "dirctory <br>";
         }
+        $theme->save();
         $template = new Templatesetup();
         $template->theme_id = $theme->id;
         $template->user_id = Auth::user()->id;
@@ -104,24 +108,40 @@ class themeController extends Controller
         return view('users.admin.template.'.$theme->name.".index", compact(['theme']));
     }
 
+    public function previewTemplate($id)
+    {
+        $theme = Theme::find($id);
+        // return $theme->name;
+        $template = Templatesetup::where('theme_id', $id)->first();
+        $availablefunction = !empty($template->functionality) ? json_decode($template->functionality, true) : [];
+        $content = json_decode($template->content);
+        $music = json_decode($template->music, true);
+        $video = json_decode($template->video, true);
+        $images = json_decode($template->image, true);
+        // return $images['sliders'][0]['image'];
+        $date = "2021-05-12";
+
+        return view('users.admin.template.' . $theme->name . ".index", compact(['theme','images', 'content', 'music', 'video', 'music', 'date']));
+    }
+
     public function presetup($id){
         $functions = Functionality::get();
         $theme = Theme::find($id);
         $template = Templatesetup::where('theme_id', $id)->first();
-        $availablefunction = json_decode($template->functionality, true);
+        $availablefunction = !empty($template->functionality) ? json_decode($template->functionality, true):[];
         $content = json_decode($template->content);
         $music = json_decode($template->music, true);
         $video = json_decode($template->video, true);
         $images = json_decode($template->image, true);
 
         // return prin($music);
-        $medias = File::with('media')->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
+        $medias = Files::with('media')->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
         return view('users.admin.theme.presetup', compact(['functions','music', 'video', 'images',  'content', 'theme', 'medias', 'availablefunction' ]));
     }
 
     public function addFunction($functionid, $themename, $themeid, $functionname){
         $template = Templatesetup::where('theme_id', $themeid)->first();
-        $previousFunction = json_decode($template->functionality, true);
+        $previousFunction = !empty($template->functionality) ? json_decode($template->functionality, true):[];
         if(array_key_exists($functionid, $previousFunction)){
             unset($previousFunction[$functionid]);
             $message  = "$functionname removed successfully";
@@ -160,7 +180,7 @@ class themeController extends Controller
         $caption['caption'] = $request->caption;
         $caption['description'] = test_input($request->description);
 
-        $previousContent = json_decode($template->content, true);
+        $previousContent = !empty($template->content)? json_decode($template->content, true):[];
 
         if(isset($previousContent['carousel'])){
             $totalCaption = count($previousContent['carousel']);
@@ -230,7 +250,7 @@ class themeController extends Controller
         $themeid = $request->themeid;
         // return $themeid;
         $template = Templatesetup::where('theme_id', $themeid)->first();
-        $previousContent = json_decode($template->content, true);
+        $previousContent = !empty($template->content)?json_decode($template->content, true):[];
         $writer = [];
         $writer['name'] = $writers;
         if (isset($previousContent['writer'])) {
@@ -294,7 +314,7 @@ class themeController extends Controller
         $music = $request->music;
         $template = Templatesetup::where('theme_id', $themeid)->first();
         // return $template;
-        $previousMusic = json_decode($template->music, true);
+        $previousMusic = !empty($template->music) ? json_decode($template->music, true):[];
         // $musicBefore = [];
         // $musicBefore = $music;
         $previousMusic ['musicbefore']= $music;
@@ -602,7 +622,7 @@ class themeController extends Controller
         $template->video = $vb;
         $template->update();
         return redirect()->back()->with('success', 'Video On added successfully');
-    }
+        }
     public function updateVideoOn(Request $request)
     {
         $themeid = $request->themeid;
