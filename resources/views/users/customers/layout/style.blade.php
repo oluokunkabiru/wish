@@ -1,6 +1,7 @@
 
 <link rel="stylesheet" href="{{ asset('assets/users/assets/modules/bootstrap/css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/users/assets/modules/dist/min/dropzone.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/users/assets/modules/datatables/datatables.min.css') }}">
 
 <link rel="stylesheet" href="{{ asset('assets/users/assets/modules/fontawesome-free/css/all.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/users/assets/modules/chocolat/dist/css/chocolat.css') }}">

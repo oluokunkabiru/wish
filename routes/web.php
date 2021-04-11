@@ -43,11 +43,15 @@ Route::prefix('users')->middleware(['auth', 'users'])->group(function () {
     Route::get('audio-gallery', 'users\usersMedia@audioGallery')->name('audioGallery');
     Route::get('video-gallery', 'users\usersMedia@videoGallery')->name('videoGallery');
     Route::get('/download/{image}', 'users\usersMedia@downloadSingle')->name('downloadSingleMedial');
+    Route::get('download/images', 'usersMedia@downloadImage')->name('downloadImage');
     // theme
     Route::resource('theme', 'users\UsersThemeConroller');
     Route::get('theme/{id}/{name}/preview', 'users\UsersThemeConroller@listThemesCategory')->name('themeCategory');
     Route::get('theme/{id}/{category}/{name}/preview', 'users\UsersThemeConroller@usersPreviewTheme')->name('usersPreviewTheme');
-    Route::get('download/images', 'usersMedia@downloadImage')->name('downloadImage');
+    Route::get('theme/{id}/{category}/{name}/{user}/setup', 'users\UsersThemeConroller@userThemeSetup')->name('userSetupTheme');
+    Route::resource('userswish', 'users\UsersWishController');
+    Route::get('choose-theme/{event}/{name}/{cat}/{catname}', 'users\UsersWishController@userChooseTheme')->name('userChooseTheme');
+
 });
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {

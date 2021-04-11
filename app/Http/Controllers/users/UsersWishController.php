@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\users;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UsersNewEventRequest;
 use App\Models\Category;
-use App\Models\Templatesetup;
+use App\Models\Template;
 use App\Models\Theme;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class UsersThemeConroller extends Controller
+class UsersWishController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,33 +20,16 @@ class UsersThemeConroller extends Controller
     public function index()
     {
         //
+        $categories = Category::get();
+        $events = Template::with(['category'])->where('user_id', Auth::user()->id)->get();
 
-        return view('users.customers.wish.index');
+        return view('users.customers.wish.index', compact(['categories', 'events']));
+
     }
-    public function listThemesCategory($id, $name){
-        $category = Category::find($id);
-        $themies = Theme::with(['user', 'category', 'media'])->where('category_id', $id)->orderBy('id', 'desc')->get();
-        // return $themies;
-        return view('users.customers.themes.view', compact(['themies', 'category']));
-    }
-
-    public function usersPreviewTheme($id){
-        $theme = Theme::find($id);
-        // return $theme->name;
-        $template = Templatesetup::where('theme_id', $id)->first();
-        $availablefunction = !empty($template->functionality) ? json_decode($template->functionality, true) : [];
-        $content = json_decode($template->content);
-        $music = json_decode($template->music, true);
-        $video = json_decode($template->video, true);
-        $images = json_decode($template->image, true);
-        // return $images['sliders'][0]['image'];
-        $date = $template->date;
-
-        return view('users.admin.template.' . $theme->name . ".index", compact(['theme', 'images', 'content', 'music', 'video', 'music', 'date']));
-    }
-
-    public function userThemeSetup(){
-        
+    public function userChooseTheme($eventid, $eventname, $catid, $catname){
+        $category = Category::find($catid);
+        $themies = Theme::with(['user', 'category', 'media'])->where('category_id', $catid)->orderBy('id', 'desc')->get();
+        return view('users.customers.wish.choose-theme', compact(['themies', 'category']));
     }
     /**
      * Show the form for creating a new resource.
@@ -54,6 +39,8 @@ class UsersThemeConroller extends Controller
     public function create()
     {
         //
+        $categories = Category::get();
+        return view('users.customers.wish.create', compact(['categories']));
     }
 
     /**
@@ -62,9 +49,19 @@ class UsersThemeConroller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsersNewEventRequest $request)
     {
         //
+        $event = new Template;
+        $event->name = $request->name;
+        $event->date = $request->date;
+        $event->user_id = Auth::user()->id;
+        $event->description = $request->description;
+        $event->category_id = $request->category;
+        $event->status ="pending";
+        $event->comment = "no";
+        $event->save();
+        return redirect(route('userswish.index'))->with('success', 'New event added successfully');
     }
 
     /**

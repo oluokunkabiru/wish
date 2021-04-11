@@ -63,9 +63,9 @@
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Wish</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="layout-default.html">New Wish</a></li>
+                    <li><a class="nav-link" href="{{ route('userswish.create') }}">New Wish</a></li>
 
-                    <li><a class="nav-link" href="layout-top-navigation.html">Manage Wish</a></li>
+                    <li><a class="nav-link" href="{{ route('userswish.index') }}">Manage Wish</a></li>
                 </ul>
             </li>
             <li class="dropdown">
