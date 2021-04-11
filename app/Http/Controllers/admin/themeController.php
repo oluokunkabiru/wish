@@ -129,11 +129,13 @@ class themeController extends Controller
         $functions = Functionality::get();
         $theme = Theme::find($id);
         $template = Templatesetup::where('theme_id', $id)->first();
+        
         $availablefunction = !empty($template->functionality) ? json_decode($template->functionality, true):[];
         $content = json_decode($template->content);
         $music = json_decode($template->music, true);
         $video = json_decode($template->video, true);
         $images = json_decode($template->image, true);
+        
 
         // return prin($music);
         $medias = Files::with('media')->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();

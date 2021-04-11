@@ -51,7 +51,7 @@ Route::prefix('users')->middleware(['auth', 'users'])->group(function () {
     Route::get('theme/{id}/{category}/{name}/{user}/setup', 'users\UsersThemeConroller@userThemeSetup')->name('userSetupTheme');
     Route::resource('userswish', 'users\UsersWishController');
     Route::get('choose-theme/{event}/{name}/{cat}/{catname}', 'users\UsersWishController@userChooseTheme')->name('userChooseTheme');
-
+    Route::get("setup/{evenid}/{eventname}/{templateid}/{catname}/{presetid}", "users\UsersWishController@setupChooseTheme")->name('userPreseupTemplateChoosed');
 });
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {

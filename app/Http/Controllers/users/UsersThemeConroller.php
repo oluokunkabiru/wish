@@ -43,9 +43,9 @@ class UsersThemeConroller extends Controller
         return view('users.admin.template.' . $theme->name . ".index", compact(['theme', 'images', 'content', 'music', 'video', 'music', 'date']));
     }
 
-    public function userThemeSetup(){
+    // public function userThemeSetup(){
         
-    }
+    // }
     /**
      * Show the form for creating a new resource.
      *

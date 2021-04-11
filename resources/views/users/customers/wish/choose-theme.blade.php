@@ -1,5 +1,5 @@
 @extends('users.customers.layout.app')
-@section('title', 'Manage Theme Preview')
+@section('title', "Choose theme for $category->name event")
 @section('style')
     <style>
         .dataTables_empty {
@@ -29,42 +29,7 @@
 
 
                                 {{-- <div class=""> --}}
-                                @if ($theme->active == 'disabled')
-                                    <a href="#disabled-theme" class="text-dark" data-toggle="modal">
-
-                                        <div class="card profile-widget">
-                                            <div class="profile-widget-header">
-                                                <img alt="image" src="{{ $image->first()->getFullUrl() }}"
-                                                    class="rounded-circle profile-widget-picture">
-                                                <div class="profile-widget-items px-1">
-                                                    <div class="profile-widget-item">
-                                                        <div class="profile-widget-item-label">Subscriber</div>
-                                                        <div class="profile-widget-item-value text-danger">187</div>
-                                                    </div>
-                                                    <div class="profile-widget-item">
-                                                        <div class="profile-widget-item-label">Price</div>
-                                                        <div class="profile-widget-item-value text-danger"><span
-                                                                class="fa">&#8358;</span>{{ $theme->price }}</div>
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-                                            <div class="profile-widget-description">
-                                                <div class="profile-widget-name">
-                                                    {{ ucwords(str_replace('_', ' ', $theme->name)) }}
-                                                </div>
-                                                {{ $theme->description }}
-                                            </div>
-
-                                        </div>
-                                    </a>
-
-
-                                @else
-
-
-
+                                @if ($theme->active == 'enabled')
                                         <div class="card profile-widget">
                                             <a href="{{ route('usersPreviewTheme', [$theme->id, $category->name, $theme->name]) }}" class="text-dark">
                                             <div class="profile-widget-header">
@@ -80,8 +45,6 @@
                                                         <div class="profile-widget-item-value text-danger"><span
                                                                 class="fa">&#8358;</span>{{ $theme->price }}</div>
                                                     </div>
-
-
                                                 </div>
                                             </div>
                                             <div class="profile-widget-description">
@@ -91,12 +54,9 @@
                                                 {{ $theme->description }}
                                             </div>
                                             </a>
-                                             <a href="{{ route('themePreset', [$theme->id, $theme->name]) }}"
+                                             <a href="{{ route('userPreseupTemplateChoosed', [$event->id, str_replace(" ", "-", $event->name), $theme->id, str_replace(" ", "-", $theme->category->name), str_replace(" ","-", $theme->name)]) }}"
                                                 class="btn btn-secondary p-2 text-uppercase">Order now <span class="mx-2 fa fa-cart-plus"></span> </a>
                                         </div>
-
-
-
                                 @endif
 
 
