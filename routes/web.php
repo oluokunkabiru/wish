@@ -51,7 +51,53 @@ Route::prefix('users')->middleware(['auth', 'users'])->group(function () {
     Route::get('theme/{id}/{category}/{name}/{user}/setup', 'users\UsersThemeConroller@userThemeSetup')->name('userSetupTheme');
     Route::resource('userswish', 'users\UsersWishController');
     Route::get('choose-theme/{event}/{name}/{cat}/{catname}', 'users\UsersWishController@userChooseTheme')->name('userChooseTheme');
-    Route::get("setup/{evenid}/{eventname}/{templateid}/{catname}/{presetid}", "users\UsersWishController@setupChooseTheme")->name('userPreseupTemplateChoosed');
+    Route::get("setup/{evenid}/{eventname}/{templateid}/{catname}", "users\UsersWishController@setupChooseTheme")->name('userPreseupTemplateChoosed');
+    // theme setup 
+    //    carousel
+    Route::post('userCarouselSetupt', 'users\UsersThemeConroller@addCarousel')->name('usertemplateAddCarouselSetup');
+    Route::patch('adminCarouselSetupUpdate', 'users\UsersThemeConroller@updateCarousel')->name("usertemplateUpdateCarouselSetup");
+    Route::get('adminDeleteCarouseSetup/{theme}/{carouselid}', 'users\UsersThemeConroller@deleteCarousel')->name('useradmindeleteCarouselSetup');
+    // template/theme
+   
+    // writer adminDateSetup
+    Route::post('adminWriterSetup', 'users\UsersThemeConroller@writerSetup')->name('useradminWriterSetup');
+    Route::patch('adminWriterSetupUpdate', 'users\UsersThemeConroller@writerSetupUpdate')->name('userwriterSetupUpdate');
+    Route::get('adminDeleteWriterSetup/{theme}/{Writerid}', 'users\UsersThemeConroller@deleteWriter')->name('useradmindeleteWriterSetup');
+    // date adminDateSetup
+    Route::post('adminDateSetup', 'users\UsersThemeConroller@adminDateSetup')->name('useradminDateSetup');
+    Route::patch('adminWriterSetupUpdate', 'users\UsersThemeConroller@writerSetupUpdate')->name('userwriterSetupUpdate');
+    Route::get('adminDeleteWriterSetup/{theme}/{Writerid}', 'users\UsersThemeConroller@deleteWriter')->name('useradmindeleteWriterSetup');
+
+    // music
+    Route::post('adminAddMusicBefore', 'users\UsersThemeConroller@addMusicBefore')->name('useraddMusicBefore');
+    Route::post('adminupdateMusicBefore', 'users\UsersThemeConroller@updateMusicBefore')->name('userupdateMusicBefore');
+    Route::get('adminDeleteMusicBefore/{theme}', 'users\UsersThemeConroller@deleteMusicBefore')->name('userdeleteMusicBefore');
+    Route::post('adminAddMusicOn', 'users\UsersThemeConroller@addMusicOn')->name('useraddMusicOn');
+    Route::post('adminupdateMusicOn', 'users\UsersThemeConroller@updateMusicOn')->name('userupdateMusicOn');
+    Route::get('adminDeleteMusicOn/{theme}', 'users\UsersThemeConroller@deleteMusicOn')->name('userdeleteMusicOn');
+    Route::post('adminAddMusicAfter', 'users\UsersThemeConroller@addMusicAfter')->name('useraddMusicAfter');
+    Route::post('adminupdateMusicAfter', 'users\UsersThemeConroller@updateMusicAfter')->name('userupdateMusicAfter');
+    Route::get('adminDeleteMusicAfter/{theme}', 'users\UsersThemeConroller@deleteMusicAfter')->name('userdeleteMusicAfter');
+    // videos
+    Route::post('adminAddVideoBefore', 'users\UsersThemeConroller@addVideoBefore')->name('useraddVideoBefore');
+    Route::post('adminupdateVideoBefore', 'users\UsersThemeConroller@updateVideoBefore')->name('userupdateVideoBefore');
+    Route::get('adminDeleteVideoBefore/{theme}', 'users\UsersThemeConroller@deleteVideoBefore')->name('userdeleteVideoBefore');
+    Route::post('adminAddVideoOn', 'users\UsersThemeConroller@addVideoOn')->name('useraddVideoOn');
+    Route::post('adminupdateVideoOn', 'users\UsersThemeConroller@updateVideoOn')->name('userupdateVideoOn');
+    Route::get('adminDeleteVideoOn/{theme}', 'users\UsersThemeConroller@deleteVideoOn')->name('userdeleteVideoOn');
+    Route::post('adminAddVideoAfter', 'users\UsersThemeConroller@addVideoAfter')->name('useraddVideoAfter');
+    Route::post('adminupdateVideoAfter', 'users\UsersThemeConroller@updateVideoAfter')->name('userupdateVideoAfter');
+    Route::get('adminDeleteVideoAfter/{theme}', 'users\UsersThemeConroller@deleteVideoAfter')->name('userdeleteVideoAfter');
+    //
+
+    // image sliders
+    Route::post('adminAddImageSliders', 'users\UsersThemeConroller@adminAddImageSliders')->name('useradminAddImageSliders');
+    Route::get('adminDeleteImageSliderSetupe/{theme}/{id}', 'users\UsersThemeConroller@deleteImageSlider')->name('useradmindeleteImageSliderSetup');
+
+    // payment with paystack
+    Route::post('/userpay', 'users\PaymentController@redirectToGateway')->name('userpay');
+    Route::get('/payment/callback', 'users\PaymentController@handleGatewayCallback')->name('paymentCallback');
+    
 });
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {

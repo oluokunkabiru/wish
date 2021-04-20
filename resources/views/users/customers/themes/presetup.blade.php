@@ -114,7 +114,7 @@
                                                                                         <span class="fa fa-edit"></span>
                                                                                     </a>
                                                                                     <a href="#deleteCarousel"
-                                                                                        carouselDeleteUrl="{{ route('admindeleteCarouselSetup', [$event->id, $key]) }}"
+                                                                                        carouselDeleteUrl="{{ route('useradmindeleteCarouselSetup', [$event->id, $key]) }}"
                                                                                         data-toggle="modal"
                                                                                         carouselDeleteImgUrl="{{ $item->image }}"
                                                                                         class="btn btn-sm btn-danger col m-1">
@@ -134,7 +134,7 @@
                                                             class="fa fa-upload"></span> add image from media</a></button>
                                                     <img src="#" class="card-img m-2" style="width: 200px"
                                                         id="carouselImgPreview" alt="">
-                                                    <form action="{{ route('templateAddCarouselSetup') }}" method="post">
+                                                    <form action="{{ route('usertemplateAddCarouselSetup') }}" method="post">
                                                         @csrf
                                                         <div class="card-body">
                                                             <div class="form-group">
@@ -201,7 +201,7 @@
                                                                                         <span class="fa fa-edit"></span>
                                                                                     </a>
                                                                                     <a href="#deleteWriter"
-                                                                                        writerDeleteUrl="{{ route('admindeleteWriterSetup', [$event->id, $key]) }}"
+                                                                                        writerDeleteUrl="{{ route('useradmindeleteWriterSetup', [$event->id, $key]) }}"
                                                                                         writerDeleteContent="{{ $item->name }}"
                                                                                         data-toggle="modal"
                                                                                         class="btn btn-sm btn-danger col m-1">
@@ -217,7 +217,7 @@
                                                         </table>
                                                     @endif
 
-                                                    <form action="{{ route('adminWriterSetup') }}" method="POST">
+                                                    <form action="{{ route('useradminWriterSetup') }}" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="themeid" value="{{ $event->id }}">
                                                         <div class="form-group">
@@ -243,7 +243,7 @@
                                                     @if (!empty($template->date))
                                                     <p class="btn btn-lg btn-rounded btn-dark font-weight-bold">{{ $template->date }}</p>
                                                     @endif
-                                                    <form action="{{ route('adminDateSetup') }}" method="POST">
+                                                    <form action="{{ route('useradminDateSetup') }}" method="POST">
                                                         @csrf
                                                         <input type="hidden" name="themeid" value="{{ $event->id }}">
                                                         <div class="form-group">
@@ -282,7 +282,7 @@
                                                             <button id="updateMusicBefore"
                                                                 class="btn btn-lg btn-warning col m-1">
                                                                 <span class="fa fa-edit"></span> </button>
-                                                            <form action="{{ route('updateMusicBefore') }}"
+                                                            <form action="{{ route('userupdateMusicBefore') }}"
                                                                 id="musicUpdateBeforeForm" method="post">
                                                                 @csrf
                                                                 <input type="hidden" value="" id="musicUpdatebeforeValue"
@@ -292,7 +292,7 @@
                                                             </form>
                                                             <a href="#deleteMusicBefore" data-toggle="modal"
                                                                 musicBeforeMusic="{{ $music['musicbefore'] }}"
-                                                                deleteMusicBeforeLink="{{ route('deleteMusicBefore', $event->id) }}"
+                                                                deleteMusicBeforeLink="{{ route('userdeleteMusicBefore', $event->id) }}"
                                                                 class="btn btn-lg btn-danger col m-1"> <span
                                                                     class="fa fa-trash"></span> </a>
 
@@ -305,7 +305,7 @@
                                                         <button class="btn btn-success text-uppercase"
                                                             id="addMusicBefore"><span class="fa fa-file-audio"></span> add
                                                             music before</button>
-                                                        <form action="{{ route('addMusicBefore') }}" id="musicBeforeForm"
+                                                        <form action="{{ route('useraddMusicBefore') }}" id="musicBeforeForm"
                                                             method="post">
                                                             @csrf
                                                             <input type="hidden" value="" id="musicbeforeValue"
@@ -332,7 +332,7 @@
                                                             <button id="updateMusicOn"
                                                                 class="btn btn-lg btn-warning col m-1">
                                                                 <span class="fa fa-edit"></span> </button>
-                                                            <form action="{{ route('updateMusicOn') }}"
+                                                            <form action="{{ route('userupdateMusicOn') }}"
                                                                 id="musicUpdateOnForm" method="post">
                                                                 @csrf
                                                                 <input type="hidden" value="" id="musicUpdateOnValue"
@@ -342,7 +342,7 @@
                                                             </form>
                                                             <a href="#deleteMusicOn" data-toggle="modal"
                                                                 musicOnMusic="{{ $music['musicon'] }}"
-                                                                deleteMusicOnLink="{{ route('deleteMusicOn', $event->id) }}"
+                                                                deleteMusicOnLink="{{ route('userdeleteMusicOn', $event->id) }}"
                                                                 class="btn btn-lg btn-danger col m-1"> <span
                                                                     class="fa fa-trash"></span> </a>
 
@@ -354,7 +354,7 @@
                                                     @else
                                                         <button class="btn btn-success text-uppercase" id="addMusicOn"><span
                                                                 class="fa fa-file-audio"></span> add music On</button>
-                                                        <form action="{{ route('addMusicOn') }}" id="musicOnForm"
+                                                        <form action="{{ route('useraddMusicOn') }}" id="musicOnForm"
                                                             method="post">
                                                             @csrf
                                                             <input type="hidden" value="" id="musicOnValue" name="music">
@@ -383,7 +383,7 @@
                                                             <button id="updateMusicAfter"
                                                                 class="btn btn-lg btn-warning col m-1">
                                                                 <span class="fa fa-edit"></span> </button>
-                                                            <form action="{{ route('updateMusicAfter') }}"
+                                                            <form action="{{ route('userupdateMusicAfter') }}"
                                                                 id="musicUpdateAfterForm" method="post">
                                                                 @csrf
                                                                 <input type="hidden" value="" id="musicUpdateAfterValue"
@@ -393,7 +393,7 @@
                                                             </form>
                                                             <a href="#deleteMusicAfter" data-toggle="modal"
                                                                 musicAfterMusic="{{ $music['musicafter'] }}"
-                                                                deleteMusicAfterLink="{{ route('deleteMusicAfter', $event->id) }}"
+                                                                deleteMusicAfterLink="{{ route('userdeleteMusicAfter', $event->id) }}"
                                                                 class="btn btn-lg btn-danger col m-1"> <span
                                                                     class="fa fa-trash"></span> </a>
 
@@ -406,7 +406,7 @@
                                                         <button class="btn btn-success text-uppercase"
                                                             id="addMusicAfter"><span class="fa fa-file-audio"></span> add
                                                             music After</button>
-                                                        <form action="{{ route('addMusicAfter') }}" id="musicAfterForm"
+                                                        <form action="{{ route('useraddMusicAfter') }}" id="musicAfterForm"
                                                             method="post">
                                                             @csrf
                                                             <input type="hidden" value="" id="musicAfterValue" name="music">
@@ -460,7 +460,7 @@
                                                                                 <div class="row">
 
                                                                                     <a href="#deleteSliderImager"
-                                                                                        imageSliderDeleteUrl="{{ route('admindeleteImageSliderSetup', [$event->id, $key]) }}"
+                                                                                        imageSliderDeleteUrl="{{ route('useradmindeleteImageSliderSetup', [$event->id, $key]) }}"
                                                                                         data-toggle="modal"
                                                                                         deleteImageSliderImage="{{ $slider }}"
                                                                                         class="btn btn-lg btn-danger col m-1">
@@ -479,7 +479,7 @@
                                                     <button class="btn btn-success  btn-block text-uppercase"
                                                         id="addImageSlider"><span class="fa fa-file-image"></span> add image
                                                         sliders</button>
-                                                    <form action="{{ route('adminAddImageSliders') }}"
+                                                    <form action="{{ route('useradminAddImageSliders') }}"
                                                         id="imageSliderForm" method="post">
                                                         @csrf
                                                         <input type="hidden" value="" id="addImageSliderValue" name="image">
@@ -508,7 +508,7 @@
                                                             <button id="updateVideoBefore"
                                                                 class="btn btn-lg btn-warning col m-1">
                                                                 <span class="fa fa-edit"></span> </button>
-                                                            <form action="{{ route('updateVideoBefore') }}"
+                                                            <form action="{{ route('userupdateVideoBefore') }}"
                                                                 id="videoUpdateBeforeForm" method="post">
                                                                 @csrf
                                                                 <input type="hidden" value="" id="videoUpdatebeforeValue"
@@ -518,7 +518,7 @@
                                                             </form>
                                                             <a href="#deleteVideoBefore" data-toggle="modal"
                                                                 videoBeforeVideo="{{ $video['videobefore'] }}"
-                                                                deleteVideoBeforeLink="{{ route('deleteVideoBefore', $event->id) }}"
+                                                                deleteVideoBeforeLink="{{ route('userdeleteVideoBefore', $event->id) }}"
                                                                 class="btn btn-lg btn-danger col m-1"> <span
                                                                     class="fa fa-trash"></span> </a>
 
@@ -531,7 +531,7 @@
                                                         <button class="btn btn-success text-uppercase"
                                                             id="addVideoBefore"><span class="fa fa-file-audio"></span> add
                                                             Video before</button>
-                                                        <form action="{{ route('addVideoBefore') }}" id="videoBeforeForm"
+                                                        <form action="{{ route('useraddVideoBefore') }}" id="videoBeforeForm"
                                                             method="post">
                                                             @csrf
                                                             <input type="hidden" value="" id="videobeforeValue"
@@ -558,7 +558,7 @@
                                                             <button id="updateVideoOn"
                                                                 class="btn btn-lg btn-warning col m-1">
                                                                 <span class="fa fa-edit"></span> </button>
-                                                            <form action="{{ route('updateVideoOn') }}"
+                                                            <form action="{{ route('userupdateVideoOn') }}"
                                                                 id="videoUpdateOnForm" method="post">
                                                                 @csrf
                                                                 <input type="hidden" value="" id="videoUpdateOnValue"
@@ -568,7 +568,7 @@
                                                             </form>
                                                             <a href="#deleteVideoOn" data-toggle="modal"
                                                                 videoOnVideo="{{ $video['videoon'] }}"
-                                                                deleteVideoOnLink="{{ route('deleteVideoOn', $event->id) }}"
+                                                                deleteVideoOnLink="{{ route('userdeleteVideoOn', $event->id) }}"
                                                                 class="btn btn-lg btn-danger col m-1"> <span
                                                                     class="fa fa-trash"></span> </a>
 
@@ -580,7 +580,7 @@
                                                     @else
                                                         <button class="btn btn-success text-uppercase" id="addVideoOn"><span
                                                                 class="fa fa-file-audio"></span> add video On</button>
-                                                        <form action="{{ route('addVideoOn') }}" id="videoOnForm"
+                                                        <form action="{{ route('useraddVideoOn') }}" id="videoOnForm"
                                                             method="post">
                                                             @csrf
                                                             <input type="hidden" value="" id="videoOnValue" name="video">
@@ -609,7 +609,7 @@
                                                             <button id="updateVideoAfter"
                                                                 class="btn btn-lg btn-warning col m-1">
                                                                 <span class="fa fa-edit"></span> </button>
-                                                            <form action="{{ route('updateVideoAfter') }}"
+                                                            <form action="{{ route('userupdateVideoAfter') }}"
                                                                 id="videoUpdateAfterForm" method="post">
                                                                 @csrf
                                                                 <input type="hidden" value="" id="videoUpdateAfterValue"
@@ -619,7 +619,7 @@
                                                             </form>
                                                             <a href="#deleteVideoAfter" data-toggle="modal"
                                                                 musicAfterVideo="{{ $video['videoafter'] }}"
-                                                                deleteVideoAfterLink="{{ route('deleteVideoAfter', $event->id) }}"
+                                                                deleteVideoAfterLink="{{ route('userdeleteVideoAfter', $event->id) }}"
                                                                 class="btn btn-lg btn-danger col m-1"> <span
                                                                     class="fa fa-trash"></span> </a>
 
@@ -632,7 +632,7 @@
                                                         <button class="btn btn-success text-uppercase"
                                                             id="addVideoAfter"><span class="fa fa-file-audio"></span> add
                                                             video After</button>
-                                                        <form action="{{ route('addVideoAfter') }}" id="videoAfterForm"
+                                                        <form action="{{ route('useraddVideoAfter') }}" id="videoAfterForm"
                                                             method="post">
                                                             @csrf
                                                             <input type="hidden" value="" id="videoAfterValue" name="video">
@@ -678,7 +678,7 @@
                         <button class="btn btn-success text-uppercase" id="updateimage"><span class="fa fa-upload"></span>
                             add image from media</a></button>
                         <img src="#" class="card-img m-2" style="width: 200px" id="carouselPreviousImgPreview" alt="">
-                        <form action="{{ route('templateUpdateCarouselSetup') }}" method="post">
+                        <form action="{{ route('usertemplateUpdateCarouselSetup') }}" method="post">
                             @csrf
                             @method("PATCH")
                             <div class="card-body">
@@ -768,7 +768,7 @@
                     <h4 class="modal-title text-uppercase text-danger">edit</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('writerSetupUpdate') }}" method="POST">
+                    <form action="{{ route('userwriterSetupUpdate') }}" method="POST">
                         @csrf
                         @method("PATCH")
                         <input type="hidden" name="themeid" value="{{ $event->id }}">

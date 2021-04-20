@@ -24,7 +24,7 @@ class UsersWishController extends Controller
     {
         //
         $categories = Category::get();
-        $events = Template::with(['category'])->where('user_id', Auth::user()->id)->get();
+        $events = Template::with(['category'])->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
 
         return view('users.customers.wish.index', compact(['categories', 'events']));
 
@@ -36,7 +36,7 @@ class UsersWishController extends Controller
         return view('users.customers.wish.choose-theme', compact(['themies', 'category', 'event']));
     }
     
-    public function setupChooseTheme($eventid, $eventname, $themeid, $catname, $themename){
+    public function setupChooseTheme($eventid, $eventname, $themeid, $catname){
         $template = Templatesetup::where('theme_id', $themeid)->first();
         $event = Template::where('id', $eventid)->first();
         $availablefunction = !empty($template->functionality) ? json_decode($template->functionality, true):[];

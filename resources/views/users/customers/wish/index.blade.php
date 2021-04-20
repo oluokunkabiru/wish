@@ -90,18 +90,19 @@
                                     <td>{{ $event->created_at }}</td>
                                     <td>
  <div class="row">
-                                                    {{-- @if ($theme->active == 'disabled') --}}
+                                                    @if ($event->templatesetup_id ==NULL )
                                                         <a href="{{ route('userChooseTheme', [$event->id, $event->name, $event->category->id, $event->category->name]) }}"
                                                            
                                                             class="badge badge-pill badge-success m-1"><span
-                                                                class="p-1 text-white">Choose Theme</span></a>
+                                                                class="p-1 text-white">Choose Theme <span class="fa fa-download"></span></span></a>
 
-                                                    {{-- @else --}}
-                                                        <a href="#deactivateTheme"
-                                                            data-toggle="modal"
-                                                            class="badge badge-pill badge-warning m-1"><span
-                                                                class="fa fa fa-lock p-1 text-white"></span></a>
-                                                    {{-- @endif --}}
+                                                    @else
+                                                   
+                                                        <a href="{{ route('userPreseupTemplateChoosed', [$event->id, str_replace(" ", "-", $event->name), $event->templatesetup_id, str_replace(" ", "-", $event->category->name)])}}"
+                                                           
+                                                            class="badge badge-pill badge-success m-1"><span
+                                                                class="p-1 text-white">Theme setting <span class="fa fa-cog"></span></span></a>
+                                                    @endif
                                                     <a href="#editTheme" data-toggle="modal"
                                                      
                                                         class="badge badge-pill badge-warning m-1"><span
